@@ -3,24 +3,33 @@
     <style>
       #title {
         margin-left: 16px;
-        font-size: 123%;
+        font-size: 200%;
         font-weight: 400;
         flex: 1;
-        color: #59ff00;
+        color: #143a00;
       }
     </style>
     <meta
       name="autotoolswebscreen"
       type="variablejs"
-      group="Title"
+      group="UI Info"
       id="titleFromTasker"
       label="Title"
       description="Title to show at the top."
       hint="YouTube"
     />
+    <meta
+      name="autotoolswebscreen"
+      type="variablejs"
+      group="UI Info"
+      id="descriptionFromTasker"
+      label="Description"
+      description="(optional) Description to show at the top."
+      hint="Description of the video."
+    />
     <!-- #region test -->
-    <div id="title">Test Title</div>
-    <h1>Test2</h1>
+    <div id="title">Untitle</div>
+    <div id="description"></div>
     <!-- #endregion test -->
   </head>
   <!-- #region JS -->
@@ -29,6 +38,11 @@
     if (AutoTools.isSet("titleFromTasker")) {
       titleElement.innerHTML = titleFromTasker;
       document.title = titleFromTasker;
+    }
+
+    var descriptionElement = document.querySelector("#description");
+    if (AutoTools.isSet("descriptionFromTasker")) {
+      descriptionElement.innerHTML = titleFromTasker;
     }
   </script>
   <!-- #endregion JS -->
