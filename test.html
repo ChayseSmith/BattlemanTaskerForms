@@ -58,7 +58,7 @@
       hint="value1,true,3"
     />
     <!-- #endregion meta -->
-    <div id="title">Untitled 11</div>
+    <div id="title">Untitled 12</div>
     <div id="description"></div>
   </head>
   <!-- #endregion Head -->
@@ -142,7 +142,11 @@
       var items = contentFromTasker.split(",");
       items.forEach(function (item, index) {
         var inputElement = document.getElementById(item);
-        inputElement.value = values[index];
+        if (inputElement.type === "checkbox") {
+          inputElement.checked = values[index] === "true";
+        } else {
+          inputElement.value = values[index];
+        }
       });
     }
   </script>
