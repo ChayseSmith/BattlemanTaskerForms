@@ -90,13 +90,13 @@
         switch (type) {
           case "TEXT":
             // Create a <div> element for TEXT type
-              inputElement.type = "text";
-              break;
-              case "BOOL":
+            inputElement.type = "text";
+            break;
+          case "BOOL":
             // Create a <div> element for BOOL type
-              inputElement.type = "checkbox";
-              break;
-              case "INT":
+            inputElement.type = "checkbox";
+            break;
+          case "INT":
             // Create a <div> element for INT type
             inputElement.type = "number";
             break;
@@ -104,7 +104,11 @@
             // Handle unknown type
             inputElement.name = "unknownType";
             inputElement.type = "text";
-            inputElement.innerHTML = type + " is not a valid type for " + name + ". Please use TEXT, BOOL, or INT."
+            inputElement.innerHTML =
+              type +
+              " is not a valid type for " +
+              name +
+              ". Please use TEXT, BOOL, or INT.";
             break;
         }
         inputElement.id = name;
