@@ -32,7 +32,12 @@
         padding: 5px;
         display: table-cell;
         font-size: 120%;
-        min-height: 30px;
+        min-height: 25px;
+      }
+      button {
+        padding: 5px;
+        font-size: 120%;
+        min-height: 25px;
       }
     </style>
     <!-- #endregion Style -->
@@ -74,7 +79,7 @@
       hint="value1,true,3"
     />
     <!-- #endregion meta -->
-    <div id="title">Untitled 19</div>
+    <div id="title">Untitled 20</div>
     <div id="description"></div>
   </head>
   <!-- #endregion Head -->
@@ -154,8 +159,12 @@
           var inputElement = document.getElementById(name);
           if (inputElement.type === "checkbox") {
             data.push(inputElement.checked);
-          } else {
+          }
+          if (inputElement.type === "number") {
             data.push(inputElement.value);
+          }
+          if (inputElement.type === "text") {
+            data.push('"' + inputElement.value + '"');
           }
         });
         AutoTools.sendCommand("InputValues=:=" + data);
