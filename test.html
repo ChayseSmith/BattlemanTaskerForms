@@ -20,11 +20,17 @@
         flex: 1;
         color: #ffffff;
       }
-      form { display: table; }
-      p { display: table-row; }
-      label, input {
+      form {
+        display: table;
+      }
+      p {
+        display: table-row;
+      }
+      label,
+      input {
         display: table-cell;
         font-size: 120%;
+        height: 120%;
       }
       large-checkbox {
         width: 40px;
@@ -79,8 +85,10 @@
   <!-- #endregion Head -->
   <!-- #region Body -->
   <body>
-    <div id="header"></div><br>
-    <form id="content"></form><br>
+    <div id="header"></div>
+    <br />
+    <form id="content"></form>
+    <br />
     <div id="footer"></div>
   </body>
   <!-- #endregion Body -->
@@ -125,7 +133,7 @@
           case "BOOL":
             // Create a <div> element for BOOL type
             inputElement.type = "checkbox";
-            inputElement.classList.add('large-checkbox');
+            inputElement.classList.add("large-checkbox");
             break;
           case "INT":
             // Create a <div> element for INT type
@@ -145,13 +153,17 @@
       });
       var submitButton = document.createElement("button");
       submitButton.innerHTML = "Submit";
-      submitButton.classList.add('large-button');
+      submitButton.classList.add("large-button");
       submitButton.onclick = function () {
         var data = [];
         items.forEach(function (item) {
           var [name, type] = item.split(":");
           var inputElement = document.getElementById(name);
-          data.push(inputElement.value);
+          if (inputElement.type === "checkbox") {
+            data.push(inputElement.checked);
+          } else {
+            data.push(inputElement.value);
+          }
         });
         AutoTools.sendCommand("InputValues=:=" + data);
       };
