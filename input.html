@@ -99,7 +99,7 @@
     <form id="content"></form>
     <br />
     <div id="footer"></div>
-    <div id="version" style="text-align: right">Input Version 1.0.5</div>
+    <div id="version" style="text-align: right">Input Version 1.0.6</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -164,6 +164,8 @@
 
       // Create Action Buttons
       var formElement = document.createElement("form");
+      formElement.id = "actionButtons";
+      formElement.style = "width: 150px";
       var pElement = document.createElement("p");
 
       // Create Submit Button
