@@ -19,6 +19,9 @@
         flex: 1;
         color: #ffffff;
       }
+      form { display: table; }
+      p { display: table-row; }
+      label, input { display: table-cell; }
     </style>
     <!-- #endregion Style -->
     <!-- #region meta -->
@@ -65,7 +68,9 @@
   <!-- #endregion Head -->
   <!-- #region Body -->
   <body>
-    <div id="content"></div>
+    <div id="header"></div>
+    <form id="content"></form>
+    <div id="footer"></div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -73,29 +78,32 @@
     var br = document.createElement("span");
     br.innerHTML = "<br>";
     var titleElement = document.querySelector("#title");
+    var descriptionElement = document.querySelector("#description");
+    var headerElement = document.querySelector("#header");
+    var contentElement = document.querySelector("#content");
+    var footerElement = document.querySelector("#footer");
+
     if (AutoTools.isSet("titleFromTasker")) {
       titleElement.innerHTML = titleFromTasker;
       document.title = titleFromTasker;
     }
 
-    var descriptionElement = document.querySelector("#description");
     if (AutoTools.isSet("descriptionFromTasker")) {
       descriptionElement.innerHTML = descriptionFromTasker;
     }
 
-    var contentElement = document.querySelector("#content");
     if (AutoTools.isSet("contentFromTasker")) {
       // Content from tasker is an array separated by commas
       var items = contentFromTasker.split(",");
       items.forEach(function (item) {
         // Separate the string into name and type
         var [name, type] = item.split(":");
-        contentElement.appendChild(br.cloneNode(true));
-        // Create a <div> element for each item
-        var divElement = document.createElement("div");
-        var lableElement = document.createElement("label");
-        lableElement.innerHTML = name + ":";
-        divElement.appendChild(lableElement);
+        // contentElement.appendChild(br.cloneNode(true));
+        // Create a <p> element for each item
+        var pElement = document.createElement("p");
+        var labelElement = document.createElement("label");
+        labelElement.innerHTML = name + ":";
+        pElement.appendChild(labelElement);
         var inputElement = document.createElement("input");
         switch (type) {
           case "TEXT":
@@ -120,8 +128,8 @@
         }
         inputElement.id = name;
         inputElement.name = name;
-        divElement.appendChild(inputElement);
-        contentElement.appendChild(divElement);
+        pElement.appendChild(inputElement);
+        contentElement.appendChild(pElement);
       });
       var submitButton = document.createElement("button");
       submitButton.innerHTML = "Submit";
@@ -134,7 +142,7 @@
         });
         AutoTools.sendCommand("InputValues=:=" + data);
       };
-      contentElement.appendChild(br.cloneNode(true));
+      // contentElement.appendChild(br.cloneNode(true));
       contentElement.appendChild(submitButton);
     }
     if (AutoTools.isSet("valuesFromTasker")) {
@@ -143,10 +151,13 @@
       items.forEach(function (item, index) {
         var [name, type] = item.split(":");
         var inputElement = document.getElementById(name);
-        if (inputElement.type === "checkbox") {
-          inputElement.checked = values[index] === "true";
+        if (typeof arrayName[index] === "undefined") {
         } else {
-          inputElement.value = values[index];
+          if (inputElement.type === "checkbox") {
+            inputElement.checked = values[index] === "true";
+          } else {
+            inputElement.value = values[index];
+          }
         }
       });
     }
