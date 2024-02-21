@@ -99,7 +99,7 @@
     <form id="content"></form>
     <br />
     <div id="footer"></div>
-    <div id="version" style="text-align: right">Input Version 1.0.6</div>
+    <div id="version" style="text-align: right">Input Version 1.0.7</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -172,6 +172,7 @@
       var submitButton = document.createElement("input");
       submitButton.type = "button";
       submitButton.innerHTML = "Submit";
+      submitButton.style = "width: 75px;";
       submitButton.onclick = function () {
         var data = [];
         items.forEach(function (item) {
@@ -196,6 +197,7 @@
       var cancelButton = document.createElement("input");
       cancelButton.type = "button";
       cancelButton.innerHTML = "Cancel";
+      cancelButton.style = "width: 75px;";
       cancelButton.onclick = function () {
         AutoTools.sendCommand("InputCancelled");
       };
