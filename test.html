@@ -49,7 +49,7 @@
       hint="Text:TEXT,Bool:BOOL,Int:INT"
     />
     <!-- #endregion meta -->
-    <div id="title">Untitled 4</div>
+    <div id="title">Untitled 5</div>
     <div id="description"></div>
   </head>
   <!-- #endregion Head -->
@@ -78,7 +78,15 @@
       items.forEach(function (item) {
         // Separate the string into name and type
         var [name, type] = item.split(":");
-        // Perform different functions based on the type
+        // Create a <div> element for each item
+        switch (type) {
+          case "TEXT":
+            // Create a <div> element for for TEXT type
+            break;
+          default:
+            // Handle unknown type
+            break;
+        }
       });
     }
   </script>
