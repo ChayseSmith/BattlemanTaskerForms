@@ -61,7 +61,7 @@
   <!-- #region JS -->
   <script type="text/javascript">
     var br = document.createElement("span");
-    br.innerHTML = "<br>";
+    br.innerHTML = "<br><br>";
     var titleElement = document.querySelector("#title");
     if (AutoTools.isSet("titleFromTasker")) {
       titleElement.innerHTML = titleFromTasker;
@@ -80,7 +80,6 @@
       items.forEach(function (item) {
         // Separate the string into name and type
         var [name, type] = item.split(":");
-        document.body.appendChild(br.cloneNode(true));
         document.body.appendChild(br.cloneNode(true));
         // Create a <div> element for each item
         var divElement = document.createElement("div");
