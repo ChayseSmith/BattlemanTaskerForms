@@ -49,7 +49,7 @@
       hint="Text:TEXT,Bool:BOOL,Int:INT"
     />
     <!-- #endregion meta -->
-    <div id="title">Untitled 5</div>
+    <div id="title">Untitled 6</div>
     <div id="description"></div>
   </head>
   <!-- #endregion Head -->
@@ -83,30 +83,33 @@
         document.body.appendChild(br.cloneNode(true));
         document.body.appendChild(br.cloneNode(true));
         // Create a <div> element for each item
+        var divElement = document.createElement("div");
+        var lableElement = document.createElement("label");
+        lableElement.innerHTML = name + ":";
+        divElement.appendChild(lableElement);
+        var inputElement = document.createElement("input");
         switch (type) {
           case "TEXT":
             // Create a <div> element for for TEXT type
-            var divElement = document.createElement("div");
-            var lableElement = document.createElement("label");
-            lableElement.innerHTML = name + ":";
-            divElement.appendChild(lableElement);
-            var inputElement = document.createElement("input");
-            inputElement.type = type;
-            inputElement.id = name;
-            inputElement.name = name;
-            divElement.appendChild(inputElement);
-            contentElement.appendChild(divElement);
+            inputElement.type = "text";
             break;
           case "BOOL":
             // Perform function for BOOL type
+            inputElement.type = "checkbox";
             break;
           case "INT":
             // Perform function for INT type
+            inputElement.type = "number";
             break;
           default:
             // Handle unknown type
+            inputElement.type = "text";
             break;
         }
+        inputElement.id = name;
+        inputElement.name = name;
+        divElement.appendChild(inputElement);
+        contentElement.appendChild(divElement);
       });
     }
   </script>
