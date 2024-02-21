@@ -99,7 +99,7 @@
     <form id="content"></form>
     <br />
     <div id="footer"></div>
-    <div id="version" style="text-align: right;">Input Version 1.0.4</div>
+    <div id="version" style="text-align: right">Input Version 1.0.5</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -161,7 +161,14 @@
         pElement.appendChild(inputElement);
         contentElement.appendChild(pElement);
       });
-      var submitButton = document.createElement("button");
+
+      // Create Action Buttons
+      var formElement = document.createElement("form");
+      var pElement = document.createElement("p");
+
+      // Create Submit Button
+      var submitButton = document.createElement("input");
+      submitButton.type = "button";
       submitButton.innerHTML = "Submit";
       submitButton.onclick = function () {
         var data = [];
@@ -181,8 +188,19 @@
         AutoTools.sendCommand("InputValues=:=" + data);
         AutoTools.sendCommand("InputCompleted");
       };
-      // contentElement.appendChild(br.cloneNode(true));
-      contentElement.appendChild(submitButton);
+      pElement.appendChild(submitButton);
+
+      // Create Cancel Button
+      var cancelButton = document.createElement("input");
+      cancelButton.type = "button";
+      cancelButton.innerHTML = "Cancel";
+      cancelButton.onclick = function () {
+        AutoTools.sendCommand("InputCancelled");
+      };
+      pElement.appendChild(cancelButton);
+
+      formElement.appendChild(pElement);
+      contentElement.appendChild(formElement);
     }
     if (AutoTools.isSet("valuesFromTasker")) {
       var values = valuesFromTasker.split(",");
