@@ -48,6 +48,15 @@
       description="A form to show in the web screen in special format."
       hint="Text:TEXT,Bool:BOOL,Int:INT"
     />
+    <meta
+      name="autotoolswebscreen"
+      type="variablejs"
+      group="UI Info"
+      id="valuesFromTasker"
+      label="Form Values"
+      description="Values to prefill the form with. Comma separated."
+      hint="value1,true,3"
+    />
     <!-- #endregion meta -->
     <div id="title">Untitled 10</div>
     <div id="description"></div>
@@ -127,6 +136,14 @@
       document.body.appendChild(br.cloneNode(true));
       document.body.appendChild(br.cloneNode(true));
       document.body.appendChild(submitButton);
+    }
+    if (AutoTools.isSet("valuesFromTasker")) {
+      var values = valuesFromTasker.split(",");
+      var items = contentFromTasker.split(",");
+      items.forEach(function (item, index) {
+        var inputElement = document.getElementById(item);
+        inputElement.value = values[index];
+      });
     }
   </script>
   <!-- #endregion JS -->
