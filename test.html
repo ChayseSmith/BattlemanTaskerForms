@@ -89,7 +89,7 @@
       items.forEach(function (item) {
         // Separate the string into name and type
         var [name, type] = item.split(":");
-        document.body.appendChild(br.cloneNode(true));
+        contentElement.appendChild(br.cloneNode(true));
         // Create a <div> element for each item
         var divElement = document.createElement("div");
         var lableElement = document.createElement("label");
@@ -133,9 +133,8 @@
         });
         AutoTools.sendCommand("InputValues=:=" + data);
       };
-      document.body.appendChild(br.cloneNode(true));
-      document.body.appendChild(br.cloneNode(true));
-      document.body.appendChild(submitButton);
+      contentElement.appendChild(br.cloneNode(true));
+      contentElement.appendChild(submitButton);
     }
     if (AutoTools.isSet("valuesFromTasker")) {
       var values = valuesFromTasker.split(",");
