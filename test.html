@@ -48,7 +48,7 @@
       hint="Text:TEXT,Bool:BOOL,Int:INT"
     />
     <!-- #endregion meta -->
-    <div id="title">Untitled 2</div>
+    <div id="title">Untitled 3</div>
     <div id="description"></div>
   </head>
   <!-- #endregion Head -->
@@ -68,6 +68,15 @@
     var descriptionElement = document.querySelector("#description");
     if (AutoTools.isSet("descriptionFromTasker")) {
       descriptionElement.innerHTML = descriptionFromTasker;
+    }
+
+    var contentElement = document.querySelector("#content");
+    if (AutoTools.isSet("contentFromTasker")) {
+      // Content from tasker is an array separated by commas
+      var items = contentFromTasker.split(",");
+      items.forEach(function (item) {
+        // Separate the string into name and type
+      });
     }
   </script>
   <!-- #endregion JS -->
