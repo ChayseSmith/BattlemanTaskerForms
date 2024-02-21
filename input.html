@@ -99,11 +99,12 @@
     <form id="content"></form>
     <br />
     <div id="footer"></div>
-    <div id="version">Version 0.0.2</div>
+    <div id="version">Version 0.0.3</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
   <script type="text/javascript">
+    AutoTools.sendCommand("InputBegan");
     var br = document.createElement("span");
     br.innerHTML = "<br>";
     var titleElement = document.querySelector("#title");
@@ -178,6 +179,7 @@
           }
         });
         AutoTools.sendCommand("InputValues=:=" + data);
+        AutoTools.sendCommand("InputCompleted");
       };
       // contentElement.appendChild(br.cloneNode(true));
       contentElement.appendChild(submitButton);
