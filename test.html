@@ -26,11 +26,11 @@
         display: table-cell;
         font-size: 120%;
       }
-      checkbox {
-        width: 25px;
-        height: 25px;
+      large-checkbox {
+        width: 40px;
+        height: 40px;
       }
-      #submit {
+      large-button {
         font-size: 120%;
       }
     </style>
@@ -73,7 +73,7 @@
       hint="value1,true,3"
     />
     <!-- #endregion meta -->
-    <div id="title">Untitled 16</div>
+    <div id="title">Untitled 17</div>
     <div id="description"></div>
   </head>
   <!-- #endregion Head -->
@@ -125,6 +125,7 @@
           case "BOOL":
             // Create a <div> element for BOOL type
             inputElement.type = "checkbox";
+            inputElement.classList.add('large-checkbox');
             break;
           case "INT":
             // Create a <div> element for INT type
@@ -144,6 +145,7 @@
       });
       var submitButton = document.createElement("button");
       submitButton.innerHTML = "Submit";
+      submitButton.classList.add('large-button');
       submitButton.onclick = function () {
         var data = [];
         items.forEach(function (item) {
