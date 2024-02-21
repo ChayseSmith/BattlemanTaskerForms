@@ -91,6 +91,7 @@
           case "TEXT":
             // Create a <div> element for TEXT type
             inputElement.type = "text";
+            inputElement.hint = "text";
             break;
           case "BOOL":
             // Create a <div> element for BOOL type
@@ -104,7 +105,7 @@
             // Handle unknown type
             inputElement.name = "unknownType";
             inputElement.type = "text";
-            inputElement.innerHTML =
+            inputElement.value =
               type +
               " is not a valid type for " +
               name +
@@ -116,6 +117,17 @@
         divElement.appendChild(inputElement);
         contentElement.appendChild(divElement);
       });
+      var submitButton = document.createElement("button");
+      submitButton.innerHTML = "Submit";
+      submitButton.onclick = function () {
+        var data = [];
+        items.forEach(function (item) {
+          var [name, type] = item.split(":");
+          var inputElement = document.getElementById(name);
+          data.push(inputElement.value);
+        });
+        AutoTools.sendCommand("InputValues=:=" + data);
+      };
     }
   </script>
   <!-- #endregion JS -->
