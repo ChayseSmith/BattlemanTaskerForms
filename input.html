@@ -165,7 +165,8 @@
       var formElement = document.createElement("form");
       formElement.id = "actionButtons";
       formElement.style = "width: 300px";
-      var pElement = document.createElement("p");
+      var p2Element = document.createElement("p");
+      p2Element.id = "p2";
 
       // Create Submit Button
       var submitButton = document.createElement("input");
@@ -190,7 +191,7 @@
         AutoTools.sendCommand("InputValues=:=" + data);
         AutoTools.sendCommand("InputCompleted");
       };
-      pElement.appendChild(submitButton);
+      p2Element.appendChild(submitButton);
 
       // Create Cancel Button
       var cancelButton = document.createElement("input");
@@ -200,9 +201,9 @@
       cancelButton.onclick = function () {
         AutoTools.sendCommand("InputCancelled");
       };
-      pElement.appendChild(cancelButton);
+      p2Element.appendChild(cancelButton);
 
-      formElement.appendChild(pElement);
+      formElement.appendChild(p2Element);
       contentElement.appendChild(formElement);
     }
     if (AutoTools.isSet("valuesFromTasker")) {
