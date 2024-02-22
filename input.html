@@ -44,7 +44,10 @@
         min-height: 25px;
         max-width: 60px;
       }
-      button,
+      button {
+        padding: 5px;
+        min-height: 25px;
+      }
       checkbox {
         display: table-cell;
         padding: 5px;
@@ -101,7 +104,7 @@
     <form id="content"></form>
     <br />
     <form id="footer"></form>
-    <div id="version" style="text-align: right">Input Version 1.0.18</div>
+    <div id="version" style="text-align: right">Input Version 1.0.19</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -146,6 +149,7 @@
           case "BOOL":
             // Create a <div> element for BOOL type
             inputElement.type = "checkbox";
+            inputElement.style = "max-width: 25px;";
             break;
           case "INT":
             // Create a <div> element for INT type
