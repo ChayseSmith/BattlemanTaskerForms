@@ -108,7 +108,7 @@
     <form id="content"></form>
     <br />
     <form id="footer" style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-evenly;"></form>
-    <div id="version" style="text-align: right">Input Form Version: 1.0.24</div>
+    <div id="version" style="text-align: right">Input Form Version: 1.0.25</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -215,7 +215,7 @@
         var inputElement = document.getElementById(name);
         if (typeof values[index] === "undefined") {
         } else {
-          if (inputElement.type === "BOOL") {
+          if (inputElement.type === "checkbox") {
             inputElement.checked = values[index] === "true";
           } else {
             inputElement.value = values[index];
