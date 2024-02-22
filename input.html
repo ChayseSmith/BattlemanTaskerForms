@@ -98,7 +98,7 @@
     <form id="content"></form>
     <br />
     <div id="footer"></div>
-    <div id="version" style="text-align: right">Input Version 1.0.9</div>
+    <div id="version" style="text-align: right">Input Version 1.0.10</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -161,6 +161,8 @@
         contentElement.appendChild(pElement);
       });
 
+      // Add Spacing for table formatting
+      contentElement.appendChild(br.cloneNode(true));
       // Create Action Buttons
       var formElement = document.createElement("form");
       formElement.id = "actionButtons";
