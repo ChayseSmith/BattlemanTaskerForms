@@ -106,7 +106,7 @@
     />
     <!-- #endregion meta -->
     <div id="title">Untitled 20</div>
-    <div id="description"></div>
+    <div id="description" style="min-height: 35px;"></div>
   </head>
   <!-- #endregion Head -->
   <!-- #region Body -->
@@ -115,8 +115,16 @@
     <br />
     <form id="content"></form>
     <br />
-    <form id="footer" style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-evenly;"></form>
-    <div id="version" style="text-align: right">Input Form Version: 1.1.6</div>
+    <form
+      id="footer"
+      style="
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      "
+    ></form>
+    <div id="version" style="text-align: right">Input Form Version: 1.1.7</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -151,7 +159,7 @@
         var labelElement = document.createElement("label");
         labelElement.innerHTML = name + ":";
         pElement.appendChild(labelElement);
-        if(type === "TEXTAREA") {
+        if (type === "TEXTAREA") {
           var inputElement = document.createElement("textarea");
         } else {
           var inputElement = document.createElement("input");
@@ -180,7 +188,8 @@
             // Handle unknown type
             inputElement.type = "text";
             inputElement.placeholder =
-              type + " is not a valid type. Please use TEXT, TEXTAREA, BOOL, or INT.";
+              type +
+              " is not a valid type. Please use TEXT, TEXTAREA, BOOL, or INT.";
             break;
         }
         inputElement.id = name;
@@ -205,7 +214,10 @@
           if (inputElement.type === "number") {
             data.push(inputElement.value);
           }
-          if (inputElement.type === "text" || inputElement.type === "textarea") {
+          if (
+            inputElement.type === "text" ||
+            inputElement.type === "textarea"
+          ) {
             data.push(inputElement.value);
           }
         });
@@ -232,7 +244,10 @@
       items.forEach(function (item, index) {
         var [name, type] = item.split(":");
         var inputElement = document.getElementById(name);
-        if (typeof values[index] === "undefined" || values[index] === "%values") {
+        if (
+          typeof values[index] === "undefined" ||
+          values[index] === "%values"
+        ) {
         } else {
           if (inputElement.type === "checkbox") {
             inputElement.checked = values[index] === "true";
