@@ -161,9 +161,6 @@
         pElement.appendChild(inputElement);
         contentElement.appendChild(pElement);
       });
-
-      // Add Spacing for table formatting
-      contentElement.appendChild(br.cloneNode(true));
       // Create Action Buttons
       var formElement = document.createElement("form");
       formElement.id = "actionButtons";
@@ -173,7 +170,7 @@
       // Create Submit Button
       var submitButton = document.createElement("input");
       submitButton.type = "button";
-      submitButton.innerHTML = "Submit";
+      submitButton.value = "Submit";
       submitButton.style = "width: 100px;";
       submitButton.onclick = function () {
         var data = [];
@@ -198,7 +195,7 @@
       // Create Cancel Button
       var cancelButton = document.createElement("input");
       cancelButton.type = "button";
-      cancelButton.innerHTML = "Cancel";
+      cancelButton.value = "Cancel";
       cancelButton.style = "width: 100px;";
       cancelButton.onclick = function () {
         AutoTools.sendCommand("InputCancelled");
