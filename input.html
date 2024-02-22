@@ -145,8 +145,19 @@
         var labelElement = document.createElement("label");
         labelElement.innerHTML = name + ":";
         pElement.appendChild(labelElement);
-        var inputElement = document.createElement("input");
+        if(type === "TEXTAREA") {
+          var inputElement = document.createElement("textarea");
+        } else {
+          var inputElement = document.createElement("input");
+        }
         switch (type) {
+          case "TEXTAREA":
+            // Create a <div> element for TEXT type
+            inputElement.rows = 10;
+            inputElement.cols = 50;
+            inputElement.wrap = "soft";
+            // inputElement.style = "height: 200px; width: 100%;";
+            break;
           case "TEXT":
             // Create a <div> element for TEXT type
             inputElement.type = "text";
