@@ -113,7 +113,7 @@
   <!-- #endregion Body -->
   <!-- #region JS -->
   <script type="text/javascript">
-    AutoTools.sendCommand("InputBegan");
+    AutoTools.sendCommand("InputOpened");
     var br = document.createElement("span");
     br.innerHTML = "<br>";
     var titleElement = document.querySelector("#title");
@@ -206,15 +206,16 @@
       };
       footerElement.appendChild(cancelButton);
     }
+
     if (AutoTools.isSet("valuesFromTasker")) {
       var values = valuesFromTasker.split(",");
       var items = contentFromTasker.split(",");
       items.forEach(function (item, index) {
         var [name, type] = item.split(":");
         var inputElement = document.getElementById(name);
-        if (typeof arrayName[index] === "undefined") {
+        if (typeof values[index] === "undefined") {
         } else {
-          if (inputElement.type === "checkbox") {
+          if (inputElement.type === "BOOL") {
             inputElement.checked = values[index] === "true";
           } else {
             inputElement.value = values[index];
