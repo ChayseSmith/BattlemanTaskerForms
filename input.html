@@ -163,12 +163,6 @@
         pElement.appendChild(inputElement);
         contentElement.appendChild(pElement);
       });
-      // // Create Action Buttons
-      // var formElement = document.createElement("form");
-      // formElement.id = "actionButtons";
-      // formElement.style = "width: 300px";
-      // var p2Element = document.createElement("p");
-      // p2Element.id = "p2";
 
       // Create Submit Button
       var submitButton = document.createElement("input");
@@ -204,9 +198,6 @@
         AutoTools.sendCommand("InputCancelled");
       };
       footerElement.appendChild(cancelButton);
-
-      // formElement.appendChild(p2Element);
-      // contentElement.appendChild(formElement);
     }
     if (AutoTools.isSet("valuesFromTasker")) {
       var values = valuesFromTasker.split(",");
