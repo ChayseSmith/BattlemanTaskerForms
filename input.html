@@ -161,50 +161,50 @@
         pElement.appendChild(inputElement);
         contentElement.appendChild(pElement);
       });
-      // Create Action Buttons
-      var formElement = document.createElement("form");
-      formElement.id = "actionButtons";
-      formElement.style = "width: 300px";
-      var p2Element = document.createElement("p");
-      p2Element.id = "p2";
+      // // Create Action Buttons
+      // var formElement = document.createElement("form");
+      // formElement.id = "actionButtons";
+      // formElement.style = "width: 300px";
+      // var p2Element = document.createElement("p");
+      // p2Element.id = "p2";
 
-      // Create Submit Button
-      var submitButton = document.createElement("input");
-      submitButton.type = "button";
-      submitButton.value = "Submit";
-      submitButton.style = "width: 100px;";
-      submitButton.onclick = function () {
-        var data = [];
-        items.forEach(function (item) {
-          var [name, type] = item.split(":");
-          var inputElement = document.getElementById(name);
-          if (inputElement.type === "checkbox") {
-            data.push(inputElement.checked);
-          }
-          if (inputElement.type === "number") {
-            data.push(inputElement.value);
-          }
-          if (inputElement.type === "text") {
-            data.push('"' + inputElement.value + '"');
-          }
-        });
-        AutoTools.sendCommand("InputValues=:=" + data);
-        AutoTools.sendCommand("InputCompleted");
-      };
-      p2Element.appendChild(submitButton);
+      // // Create Submit Button
+      // var submitButton = document.createElement("input");
+      // submitButton.type = "button";
+      // submitButton.value = "Submit";
+      // submitButton.style = "width: 100px;";
+      // submitButton.onclick = function () {
+      //   var data = [];
+      //   items.forEach(function (item) {
+      //     var [name, type] = item.split(":");
+      //     var inputElement = document.getElementById(name);
+      //     if (inputElement.type === "checkbox") {
+      //       data.push(inputElement.checked);
+      //     }
+      //     if (inputElement.type === "number") {
+      //       data.push(inputElement.value);
+      //     }
+      //     if (inputElement.type === "text") {
+      //       data.push('"' + inputElement.value + '"');
+      //     }
+      //   });
+      //   AutoTools.sendCommand("InputValues=:=" + data);
+      //   AutoTools.sendCommand("InputCompleted");
+      // };
+      // p2Element.appendChild(submitButton);
 
-      // Create Cancel Button
-      var cancelButton = document.createElement("input");
-      cancelButton.type = "button";
-      cancelButton.value = "Cancel";
-      cancelButton.style = "width: 100px;";
-      cancelButton.onclick = function () {
-        AutoTools.sendCommand("InputCancelled");
-      };
-      p2Element.appendChild(cancelButton);
+      // // Create Cancel Button
+      // var cancelButton = document.createElement("input");
+      // cancelButton.type = "button";
+      // cancelButton.value = "Cancel";
+      // cancelButton.style = "width: 100px;";
+      // cancelButton.onclick = function () {
+      //   AutoTools.sendCommand("InputCancelled");
+      // };
+      // p2Element.appendChild(cancelButton);
 
-      formElement.appendChild(p2Element);
-      contentElement.appendChild(formElement);
+      // formElement.appendChild(p2Element);
+      // contentElement.appendChild(formElement);
     }
     if (AutoTools.isSet("valuesFromTasker")) {
       var values = valuesFromTasker.split(",");
