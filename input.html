@@ -45,7 +45,6 @@
       button,
       checkbox {
         padding: 5px;
-        font-size: 120%;
         min-height: 25px;
       }
     </style>
@@ -99,7 +98,7 @@
     <form id="content"></form>
     <br />
     <div id="footer"></div>
-    <div id="version" style="text-align: right">Input Version 1.0.8</div>
+    <div id="version" style="text-align: right">Input Version 1.0.9</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -165,14 +164,14 @@
       // Create Action Buttons
       var formElement = document.createElement("form");
       formElement.id = "actionButtons";
-      formElement.style = "width: 150px";
+      formElement.style = "width: 300px";
       var pElement = document.createElement("p");
 
       // Create Submit Button
       var submitButton = document.createElement("input");
       submitButton.type = "button";
       submitButton.innerHTML = "Submit";
-      submitButton.style = "width: 75px;";
+      submitButton.style = "width: 100px;";
       submitButton.onclick = function () {
         var data = [];
         items.forEach(function (item) {
