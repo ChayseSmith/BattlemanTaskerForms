@@ -110,7 +110,7 @@
     <form id="content"></form>
     <br />
     <form id="footer" style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-evenly;"></form>
-    <div id="version" style="text-align: right">Input Form Version: 1.1.3</div>
+    <div id="version" style="text-align: right">Input Form Version: 1.1.4</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -174,7 +174,7 @@
             // Handle unknown type
             inputElement.type = "text";
             inputElement.placeholder =
-              type + " is not a valid type. Please use TEXT, BOOL, or INT.";
+              type + " is not a valid type. Please use TEXT, TEXTAREA, BOOL, or INT.";
             break;
         }
         inputElement.id = name;
@@ -199,7 +199,7 @@
           if (inputElement.type === "number") {
             data.push(inputElement.value);
           }
-          if (inputElement.type === "text") {
+          if (inputElement.type === "text" || inputElement.type === "textarea") {
             data.push('"' + inputElement.value + '"');
           }
         });
@@ -219,6 +219,7 @@
       footerElement.appendChild(cancelButton);
     }
 
+    // Prefill the form with values from tasker
     if (AutoTools.isSet("valuesFromTasker")) {
       var values = valuesFromTasker.split(",");
       var items = contentFromTasker.split(",");
