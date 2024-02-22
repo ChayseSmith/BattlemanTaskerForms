@@ -9,6 +9,7 @@
         overflow-y: scroll;
         color: #ffffff;
         border: 5px solid #ffffff;
+        background-color: black;
       }
       #title {
         font-size: 200%;
@@ -98,8 +99,8 @@
     <br />
     <form id="content"></form>
     <br />
-    <div id="footer"></div>
-    <div id="version" style="text-align: right">Input Version 1.0.14</div>
+    <form id="footer"></form>
+    <div id="version" style="text-align: right">Input Version 1.0.15</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -191,7 +192,7 @@
         AutoTools.sendCommand("InputValues=:=" + data);
         AutoTools.sendCommand("InputCompleted");
       };
-      contentElement.appendChild(submitButton);
+      footerElement.appendChild(submitButton);
 
       // // Create Cancel Button
       var cancelButton = document.createElement("input");
@@ -201,7 +202,7 @@
       cancelButton.onclick = function () {
         AutoTools.sendCommand("InputCancelled");
       };
-      contentElement.appendChild(cancelButton);
+      footerElement.appendChild(cancelButton);
 
       // formElement.appendChild(p2Element);
       // contentElement.appendChild(formElement);
