@@ -214,7 +214,7 @@
       items.forEach(function (item, index) {
         var [name, type] = item.split(":");
         var inputElement = document.getElementById(name);
-        if (typeof values[index] === "undefined") {
+        if (typeof values[index] === "undefined" || values[index] === "%values") {
         } else {
           if (inputElement.type === "checkbox") {
             inputElement.checked = values[index] === "true";
