@@ -175,7 +175,7 @@
       var submitButton = document.createElement("input");
       submitButton.type = "button";
       submitButton.value = "Submit";
-      submitButton.style = "width: 100px;";
+      submitButton.style = "max-width: 100px;";
       submitButton.onclick = function () {
         var data = [];
         items.forEach(function (item) {
@@ -200,7 +200,7 @@
       var cancelButton = document.createElement("input");
       cancelButton.type = "button";
       cancelButton.value = "Cancel";
-      cancelButton.style = "width: 100px;";
+      cancelButton.style = "max-width: 100px;";
       cancelButton.onclick = function () {
         AutoTools.sendCommand("InputCancelled");
       };
