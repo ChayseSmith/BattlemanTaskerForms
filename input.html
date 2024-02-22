@@ -104,7 +104,7 @@
     <form id="content"></form>
     <br />
     <form id="footer"></form>
-    <div id="version" style="text-align: right">Input Version 1.0.19</div>
+    <div id="version" style="text-align: right">Input Version 1.0.20</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -138,6 +138,9 @@
         var pElement = document.createElement("p");
         var labelElement = document.createElement("label");
         labelElement.innerHTML = name + ":";
+        if(type === "CHECKBOX") {
+          labelElement.style = "position: relative; top: -10px;";
+        }
         pElement.appendChild(labelElement);
         var inputElement = document.createElement("input");
         switch (type) {
@@ -149,7 +152,8 @@
           case "BOOL":
             // Create a <div> element for BOOL type
             inputElement.type = "checkbox";
-            inputElement.style = "max-width: 25px;";
+            inputElement.style =
+              "max-width: 35px; margin: 0px -1px; min-height: 35px;";
             break;
           case "INT":
             // Create a <div> element for INT type
