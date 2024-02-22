@@ -23,33 +23,37 @@
         color: #ffffff;
       }
       form {
-        display: table;
-        width: 100%;
+        display: flex;
+        width: 95%;
+        flex-direction: column;
+        align-items: stretch;
       }
       p {
-        display: table-row;
-      }
-      input {
-        padding: 5px;
-        display: table-cell;
-        font-size: 120%;
-        min-height: 25px;
-        width: 90%;
+        margin: 0px 0px 0px 0px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
       }
       label {
         text-align: right;
         padding: 5px;
-        display: table-cell;
         font-size: 120%;
         min-height: 25px;
-        max-width: 60px;
+        width: 75px;
+      }
+      input {
+        padding: 5px;
+        font-size: 120%;
+        min-height: 25px;
+        flex: 2;
+      }
+      input[type="checkbox"] {
+        width: 36px;
+        max-width: 36px;
+        margin: 0px -1px -1px 0px;
+        min-height: 36px;
       }
       button {
-        padding: 5px;
-        min-height: 25px;
-      }
-      checkbox {
-        display: table-cell;
         padding: 5px;
         min-height: 25px;
       }
@@ -103,8 +107,8 @@
     <br />
     <form id="content"></form>
     <br />
-    <form id="footer" style="margin: 0 auto;"></form>
-    <div id="version" style="text-align: right">Input Version 1.0.21</div>
+    <form id="footer" style="margin: 0 auto"></form>
+    <div id="version" style="text-align: right">Input Version 1.0.22</div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
@@ -138,9 +142,6 @@
         var pElement = document.createElement("p");
         var labelElement = document.createElement("label");
         labelElement.innerHTML = name + ":";
-        if(type === "CHECKBOX") {
-          labelElement.style = "position: relative; top: -10px;";
-        }
         pElement.appendChild(labelElement);
         var inputElement = document.createElement("input");
         switch (type) {
@@ -152,8 +153,6 @@
           case "BOOL":
             // Create a <div> element for BOOL type
             inputElement.type = "checkbox";
-            inputElement.style =
-              "max-width: 35px; margin: 0px -1px; min-height: 35px;";
             break;
           case "INT":
             // Create a <div> element for INT type
