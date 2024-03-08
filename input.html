@@ -4,30 +4,30 @@
   <head>
     <!-- #region Style -->
     <style>
-      html {
-        border: 5px solid rgb(0, 70, 94);
-      }
-      head,
       body {
+        min-height: 200px;
         font-size: 110%;
-        /* overflow-y: auto; */
+        overflow-y: auto;
         color: #ffffff;
         background-color: black;
         margin: 0;
         position: relative; /* Needed for the pseudo-element */
         padding-bottom: 10px;
       }
-      /* body::after {
+      body::after {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        border: 5px solid rgb(0, 70, 94);
+        /* border: 5px solid rgb(0, 70, 94); */
+        border-top: 5px solid rgb(0, 70, 94);
+        border-left: 5px solid rgb(0, 70, 94);
+        border-right: 5px solid rgb(0, 70, 94);
         pointer-events: none;
         z-index: 999;
-      } */
+      }
       .content-wrapper {
         padding: 10px; /* Adjust this value as needed */
       }
@@ -80,20 +80,20 @@
         min-height: 100px;
       }
       .bottom-container {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
         display: flex;
         justify-content: space-between;
-        padding: 10px;
+        padding: 5px;
         background-color: rgb(0, 70, 94);
         z-index: 1000;
       }
       .bottom-div {
         display: inline-block;
         background-color: rgb(0, 70, 94);
-        position: fixed;
+        position: relative;
       }
       .bottom-div span {
         display: block;
@@ -169,8 +169,10 @@
       <form id="content"></form>
       <form id="footer"></form>
       <div id="bottom-container" class="bottom-container">
-        <div class="bottom-div"><span id="testdiv"></span></div>
-        <div class="bottom-div"><span id="version"></span></div>
+        <div class="bottom-div"><span id="testdiv">Has Values</span></div>
+        <div class="bottom-div">
+          <span id="version">Input Form Version: 1.2.22</span>
+        </div>
       </div>
     </div>
 
@@ -307,7 +309,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.22";
+      versionElement.innerHTML = "Input Form Version: 1.2.23";
     </script>
     <!-- #endregion JS -->
   </body>
