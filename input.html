@@ -10,24 +10,24 @@
       head,
       body {
         font-size: 110%;
-        overflow-y: auto;
+        /* overflow-y: auto; */
         color: #ffffff;
         background-color: black;
         margin: 0;
         position: relative; /* Needed for the pseudo-element */
         padding-bottom: 10px;
       }
-      body::after {
+      /* body::after {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        /* border: 5px solid rgb(0, 70, 94); */
-        pointer-events: none; /* Allows clicks to pass through */
-        z-index: 999; /* Ensure it's below the .bottom-container */
-      }
+        border: 5px solid rgb(0, 70, 94);
+        pointer-events: none;
+        z-index: 999;
+      } */
       .content-wrapper {
         padding: 10px; /* Adjust this value as needed */
       }
@@ -80,7 +80,7 @@
         min-height: 100px;
       }
       .bottom-container {
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -93,7 +93,7 @@
       .bottom-div {
         display: inline-block;
         background-color: rgb(0, 70, 94);
-        position: relative;
+        position: fixed;
       }
       .bottom-div span {
         display: block;
@@ -307,7 +307,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.21";
+      versionElement.innerHTML = "Input Form Version: 1.2.22";
     </script>
     <!-- #endregion JS -->
   </body>
