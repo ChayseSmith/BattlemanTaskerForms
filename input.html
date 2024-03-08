@@ -11,6 +11,7 @@
         background-color: black;
         margin: 0;
         position: relative; /* Needed for the pseudo-element */
+        padding-bottom: 60px;
       }
       body::after {
         content: "";
@@ -109,7 +110,7 @@
         left: 0;
         right: 0;
         display: flex;
-        justify-content: space-between; /* Evenly space the buttons */
+        justify-content: space-evenly; /* Evenly space the buttons */
         padding: 0 10px; /* Padding on sides */
         background-color: rgba(0,0,0,0.5); /* Optional: Add a background to make it stand out */
         z-index: 1000; /* Ensure it's above the pseudo-element */
@@ -304,7 +305,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.15";
+      versionElement.innerHTML = "Input Form Version: 1.2.16";
     </script>
     <!-- #endregion JS -->
   </body>
