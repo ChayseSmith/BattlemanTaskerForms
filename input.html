@@ -6,13 +6,17 @@
     <style>
       body {
         font-size: 110%;
-        overflow-y: scroll;
+        overflow-y: auto; /* Changed to 'auto' to avoid unnecessary scrollbars */
         color: #ffffff;
         background-color: black;
         border: 5px solid rgb(0, 70, 94);
-        margin: 0; /* Remove external margins */
-        padding-bottom: 60px; /* Adjust as needed to fit the .bottom-container */
+        margin: 0; /* Ensure no external margin */
+        padding: 0; /* Remove default padding */
       }
+      .content-wrapper {
+        padding-bottom: 60px; /* Space for the .bottom-container */
+      }
+
       #title {
         font-size: 200%;
         font-weight: 400;
@@ -81,16 +85,18 @@
         padding: 5px 20px; /* Adjust padding as needed */
         line-height: 1.2; /* Adjust line-height as needed for the text */
       }
-      /* Specific adjustment for the left-side text to reduce left padding */
+      /* Specific adjustments for left and right padding */
       .bottom-div:first-child span {
         padding-left: 5px;
       }
-      /* Adjust the right-side text padding as needed for the version text */
       .bottom-div:last-child span {
         padding-right: 20px;
       }
       form#footer {
-        margin-bottom: 50px; /* Adjust the value to ensure it's within the bordered area */
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
       }
     </style>
     <!-- #endregion Style -->
@@ -136,19 +142,14 @@
   <!-- #endregion Head -->
   <!-- #region Body -->
   <body>
-    <div id="title">Untitled 20</div>
-    <div id="description"></div>
-    <div id="header"></div>
-    <form id="content"></form>
-    <form
-      id="footer"
-      style="
-        margin: 0 auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-      "
-    ></form>
+    <div class="content-wrapper">
+      <!-- All your content except .bottom-container goes here -->
+      <div id="title">Untitled 20</div>
+      <div id="description"></div>
+      <div id="header"></div>
+      <form id="content"></form>
+      <form id="footer"></form>
+    </div>
     <div id="bottom-container" class="bottom-container">
       <div class="bottom-div"><span id="testdiv"></span></div>
       <div class="bottom-div"><span id="version"></span></div>
@@ -287,7 +288,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.8";
+      versionElement.innerHTML = "Input Form Version: 1.2.9";
     </script>
     <!-- #endregion JS -->
   </body>
