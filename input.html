@@ -102,6 +102,7 @@
         padding-right: 20px;
       }
       form#footer {
+        flex-direction: row;
         position: fixed; /* Make footer always visible */
         bottom: 50px; /* Adjust distance from bottom */
         left: 0;
@@ -109,7 +110,12 @@
         display: flex;
         justify-content: space-between; /* Evenly space the buttons */
         padding: 0 10px; /* Padding on sides */
-        background-color: rgba(0,0,0,0.5); /* Optional: Add a background to make it stand out */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Optional: Add a background to make it stand out */
         z-index: 1000; /* Ensure it's above the pseudo-element */
       }
     </style>
@@ -162,11 +168,11 @@
       <div id="description"></div>
       <div id="header"></div>
       <form id="content"></form>
-    </div>
-    <form id="footer"></form>
-    <div id="bottom-container" class="bottom-container">
-      <div class="bottom-div"><span id="testdiv"></span></div>
-      <div class="bottom-div"><span id="version"></span></div>
+      <form id="footer"></form>
+      <div id="bottom-container" class="bottom-container">
+        <div class="bottom-div"><span id="testdiv"></span></div>
+        <div class="bottom-div"><span id="version"></span></div>
+      </div>
     </div>
 
     <!-- #region JS -->
@@ -302,7 +308,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.12";
+      versionElement.innerHTML = "Input Form Version: 1.2.13";
     </script>
     <!-- #endregion JS -->
   </body>
