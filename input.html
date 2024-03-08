@@ -10,9 +10,8 @@
         color: #ffffff;
         background-color: black;
         margin: 5px;
-        /* Consider adjusting/removing this border style */
-        /* border: 5px solid #ffffff; */
-        padding-bottom: 70px; /* Add space for the bottom container */
+        padding-bottom: 70px; /* Ensure space for the bottom container */
+        border: 5px solid #ffffff; /* Restore the white border */
       }
       #title {
         font-size: 200%;
@@ -70,14 +69,17 @@
         justify-content: space-between;
         padding: 10px;
         background-color: rgb(0, 70, 94);
-        /* Ensure the container is above other content */
-        z-index: 1000;
+        z-index: 1000; /* Ensure it's above other content */
+      }
+      .bottom-div {
+        display: inline-block;
+        height: 30px; /* Adjusted to make it shorter */
+        background-color: rgb(0, 70, 94);
+        position: relative;
       }
       .bottom-div span {
-        /* Remove absolute positioning to ensure it's visible */
-        padding: 0 10px;
-        /* Vertically center text within the div */
-        line-height: 50px; /* Match the height of the .bottom-div */
+        padding: 0 20px; /* Increased padding for more horizontal space */
+        line-height: 30px; /* Match the new height of the .bottom-div */
       }
       .bottom-div:first-child span {
         text-align: left;
