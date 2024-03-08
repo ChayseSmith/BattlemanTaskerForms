@@ -6,15 +6,25 @@
     <style>
       body {
         font-size: 110%;
-        overflow-y: auto; /* Changed to 'auto' to avoid unnecessary scrollbars */
+        overflow-y: auto;
         color: #ffffff;
         background-color: black;
+        margin: 0;
+        position: relative; /* Needed for the pseudo-element */
+      }
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         border: 5px solid rgb(0, 70, 94);
-        margin: 0; /* Ensure no external margin */
-        padding: 0; /* Remove default padding */
+        pointer-events: none; /* Allows clicks to pass through */
+        z-index: 999; /* Ensure it's below the .bottom-container */
       }
       .content-wrapper {
-        padding-bottom: 60px; /* Space for the .bottom-container */
+        padding-bottom: 60px; /* Adjust this value as needed */
       }
 
       #title {
@@ -82,22 +92,21 @@
       }
       .bottom-div span {
         display: block;
-        padding: 5px 20px; /* Adjust padding as needed */
-        line-height: 1.2; /* Adjust line-height as needed for the text */
+        padding: 5px 20px;
+        line-height: 1.2;
       }
-      /* Specific adjustments for left and right padding */
       .bottom-div:first-child span {
         padding-left: 5px;
       }
       .bottom-div:last-child span {
         padding-right: 20px;
       }
-      form#footer {
+      /* form#footer {
         margin: 0 auto;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-      }
+      } */
     </style>
     <!-- #endregion Style -->
     <!-- #region meta -->
@@ -256,7 +265,7 @@
         };
         footerElement.appendChild(submitButton);
 
-        // // Create Cancel Button
+        // Create Cancel Button
         var cancelButton = document.createElement("input");
         cancelButton.type = "button";
         cancelButton.value = "Cancel";
@@ -288,7 +297,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.9";
+      versionElement.innerHTML = "Input Form Version: 1.2.10";
     </script>
     <!-- #endregion JS -->
   </body>
