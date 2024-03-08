@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <html>
   <!-- #region Head -->
   <head>
     <!-- #region Style -->
     <style>
-      head,
       body {
         font-size: 110%;
         overflow-y: scroll;
@@ -15,13 +15,12 @@
       #title {
         font-size: 200%;
         font-weight: 400;
-        flex: 1;
         color: #0000ff;
         text-align: center;
       }
       #description {
         font-size: 100%;
-        flex: 1;
+        min-height: 70px;
         color: #ffffff;
       }
       form {
@@ -31,7 +30,7 @@
         align-items: stretch;
       }
       p {
-        margin: 0px 0px 0px 0px;
+        margin: 0;
         display: flex;
         align-items: center;
         flex-direction: row;
@@ -43,7 +42,9 @@
         min-height: 25px;
         width: 120px;
       }
-      input {
+      input,
+      textarea,
+      button {
         padding: 5px;
         font-size: 110%;
         min-height: 25px;
@@ -56,35 +57,22 @@
         min-height: 36px;
       }
       textarea {
-        padding: 5px;
-        font-size: 110%;
         min-height: 100px;
-        flex: 2;
       }
-      button {
-        padding: 5px;
-        min-height: 25px;
-      }
-
       .bottom-container {
-        position: fixed; /* Use 'absolute' if you want it to scroll away */
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
         display: flex;
         justify-content: space-between;
         padding: 10px;
-      }
-      .bottom-div {
-        display: inline-block; /* Allows the div to shrink-wrap its content */
-        height: 50px; /* or your desired height */
-        background-color: rgb(0, 70, 94); /* Just for visibility */
-        position: relative; /* Needed for absolute positioning of child elements */
+        background-color: rgb(0, 70, 94);
       }
       .bottom-div span {
         position: absolute;
         bottom: 0;
-        padding: 0 10px; /* Add some padding if needed */
+        padding: 0 10px;
       }
       .bottom-div:first-child span {
         text-align: left;
@@ -132,16 +120,14 @@
       hint="value1,true,3"
     />
     <!-- #endregion meta -->
-    <div id="title">Untitled 20</div>
-    <div id="description" style="min-height: 70px"></div>
   </head>
   <!-- #endregion Head -->
   <!-- #region Body -->
   <body>
+    <div id="title">Untitled 20</div>
+    <div id="description"></div>
     <div id="header"></div>
-    <br />
     <form id="content"></form>
-    <br />
     <form
       id="footer"
       style="
@@ -153,144 +139,147 @@
     ></form>
     <div id="bottom-container" class="bottom-container">
       <div class="bottom-div"><span id="testdiv"></span></div>
-      <div class="bottom-div"><span id="version"></span></div>
+      <div class="bottom-div">
+        <span id="version">Input Form Version: 1.2.5</span>
+      </div>
     </div>
-  </body>
-  <!-- #endregion Body -->
-  <!-- #region JS -->
-  <script type="text/javascript">
-    AutoTools.sendCommand("InputOpened");
-    var br = document.createElement("span");
-    br.innerHTML = "<br>";
-    var titleElement = document.querySelector("#title");
-    var descriptionElement = document.querySelector("#description");
-    var headerElement = document.querySelector("#header");
-    var contentElement = document.querySelector("#content");
-    var footerElement = document.querySelector("#footer");
-    var testdivElement = document.querySelector("#testdiv");
-    var versionElement = document.querySelector("#version");
 
-    if (AutoTools.isSet("titleFromTasker")) {
-      titleElement.innerHTML = titleFromTasker;
-      document.title = titleFromTasker;
-    }
+    <!-- #region JS -->
+    <script type="text/javascript">
+      AutoTools.sendCommand("InputOpened");
+      var br = document.createElement("span");
+      br.innerHTML = "<br>";
+      var titleElement = document.querySelector("#title");
+      var descriptionElement = document.querySelector("#description");
+      var headerElement = document.querySelector("#header");
+      var contentElement = document.querySelector("#content");
+      var footerElement = document.querySelector("#footer");
+      var testdivElement = document.querySelector("#testdiv");
+      var versionElement = document.querySelector("#version");
 
-    if (AutoTools.isSet("descriptionFromTasker")) {
-      descriptionElement.innerHTML = descriptionFromTasker;
-    }
+      if (AutoTools.isSet("titleFromTasker")) {
+        titleElement.innerHTML = titleFromTasker;
+        document.title = titleFromTasker;
+      }
 
-    if (AutoTools.isSet("contentFromTasker")) {
-      // Content from tasker is an array separated by commas
-      var items = contentFromTasker.split(",");
-      items.forEach(function (item) {
-        // Separate the string into name and type
-        var [name, type] = item.split(":");
-        // contentElement.appendChild(br.cloneNode(true));
-        // Create a <p> element for each item
-        var pElement = document.createElement("p");
-        var labelElement = document.createElement("label");
-        labelElement.innerHTML = name + ":";
-        pElement.appendChild(labelElement);
-        if (type === "TEXTAREA") {
-          var inputElement = document.createElement("textarea");
-        } else {
-          var inputElement = document.createElement("input");
-        }
-        switch (type) {
-          case "TEXTAREA":
-            // Create a <div> element for TEXT type
-            inputElement.rows = 10;
-            inputElement.cols = 50;
-            inputElement.wrap = "soft";
-            // inputElement.style = "height: 200px; width: 100%;";
-            break;
-          case "TEXT":
-            // Create a <div> element for TEXT type
-            inputElement.type = "text";
-            break;
-          case "BOOL":
-            // Create a <div> element for BOOL type
-            inputElement.type = "checkbox";
-            break;
-          case "INT":
-            // Create a <div> element for INT type
-            inputElement.type = "number";
-            break;
-          default:
-            // Handle unknown type
-            inputElement.type = "text";
-            inputElement.placeholder =
-              type +
-              " is not a valid type. Please use TEXT, TEXTAREA, BOOL, or INT.";
-            break;
-        }
-        inputElement.id = name;
-        inputElement.name = name;
-        pElement.appendChild(inputElement);
-        contentElement.appendChild(pElement);
-      });
+      if (AutoTools.isSet("descriptionFromTasker")) {
+        descriptionElement.innerHTML = descriptionFromTasker;
+      }
 
-      // Create Submit Button
-      var submitButton = document.createElement("input");
-      submitButton.type = "button";
-      submitButton.value = "Submit";
-      submitButton.style = "max-width: 100px;";
-      submitButton.onclick = function () {
-        var data = [];
+      if (AutoTools.isSet("contentFromTasker")) {
+        // Content from tasker is an array separated by commas
+        var items = contentFromTasker.split(",");
         items.forEach(function (item) {
+          // Separate the string into name and type
+          var [name, type] = item.split(":");
+          // contentElement.appendChild(br.cloneNode(true));
+          // Create a <p> element for each item
+          var pElement = document.createElement("p");
+          var labelElement = document.createElement("label");
+          labelElement.innerHTML = name + ":";
+          pElement.appendChild(labelElement);
+          if (type === "TEXTAREA") {
+            var inputElement = document.createElement("textarea");
+          } else {
+            var inputElement = document.createElement("input");
+          }
+          switch (type) {
+            case "TEXTAREA":
+              // Create a <div> element for TEXT type
+              inputElement.rows = 10;
+              inputElement.cols = 50;
+              inputElement.wrap = "soft";
+              // inputElement.style = "height: 200px; width: 100%;";
+              break;
+            case "TEXT":
+              // Create a <div> element for TEXT type
+              inputElement.type = "text";
+              break;
+            case "BOOL":
+              // Create a <div> element for BOOL type
+              inputElement.type = "checkbox";
+              break;
+            case "INT":
+              // Create a <div> element for INT type
+              inputElement.type = "number";
+              break;
+            default:
+              // Handle unknown type
+              inputElement.type = "text";
+              inputElement.placeholder =
+                type +
+                " is not a valid type. Please use TEXT, TEXTAREA, BOOL, or INT.";
+              break;
+          }
+          inputElement.id = name;
+          inputElement.name = name;
+          pElement.appendChild(inputElement);
+          contentElement.appendChild(pElement);
+        });
+
+        // Create Submit Button
+        var submitButton = document.createElement("input");
+        submitButton.type = "button";
+        submitButton.value = "Submit";
+        submitButton.style = "max-width: 100px;";
+        submitButton.onclick = function () {
+          var data = [];
+          items.forEach(function (item) {
+            var [name, type] = item.split(":");
+            var inputElement = document.getElementById(name);
+            if (inputElement.type === "checkbox") {
+              data.push(inputElement.checked);
+            }
+            if (inputElement.type === "number") {
+              data.push(inputElement.value);
+            }
+            if (
+              inputElement.type === "text" ||
+              inputElement.type === "textarea"
+            ) {
+              data.push(inputElement.value);
+            }
+          });
+          AutoTools.sendCommand("InputValues=:=" + data);
+          AutoTools.sendCommand("InputCompleted");
+        };
+        footerElement.appendChild(submitButton);
+
+        // // Create Cancel Button
+        var cancelButton = document.createElement("input");
+        cancelButton.type = "button";
+        cancelButton.value = "Cancel";
+        cancelButton.style = "max-width: 100px;";
+        cancelButton.onclick = function () {
+          AutoTools.sendCommand("InputCancelled");
+        };
+        footerElement.appendChild(cancelButton);
+      }
+
+      // Prefill the form with values from tasker
+      if (AutoTools.isSet("valuesFromTasker")) {
+        testdivElement.innerHTML = "Has Values";
+        var values = valuesFromTasker.split(",");
+        var items = contentFromTasker.split(",");
+        items.forEach(function (item, index) {
           var [name, type] = item.split(":");
           var inputElement = document.getElementById(name);
-          if (inputElement.type === "checkbox") {
-            data.push(inputElement.checked);
-          }
-          if (inputElement.type === "number") {
-            data.push(inputElement.value);
-          }
           if (
-            inputElement.type === "text" ||
-            inputElement.type === "textarea"
+            typeof values[index] === "undefined" ||
+            values[index] === "%values"
           ) {
-            data.push(inputElement.value);
+          } else {
+            if (inputElement.type === "checkbox") {
+              inputElement.checked = values[index] === "true";
+            } else {
+              inputElement.value = values[index];
+            }
           }
         });
-        AutoTools.sendCommand("InputValues=:=" + data);
-        AutoTools.sendCommand("InputCompleted");
-      };
-      footerElement.appendChild(submitButton);
-
-      // // Create Cancel Button
-      var cancelButton = document.createElement("input");
-      cancelButton.type = "button";
-      cancelButton.value = "Cancel";
-      cancelButton.style = "max-width: 100px;";
-      cancelButton.onclick = function () {
-        AutoTools.sendCommand("InputCancelled");
-      };
-      footerElement.appendChild(cancelButton);
-    }
-
-    // Prefill the form with values from tasker
-    if (AutoTools.isSet("valuesFromTasker")) {
-      testdivElement.innerHTML = "Has Values";
-      var values = valuesFromTasker.split(",");
-      var items = contentFromTasker.split(",");
-      items.forEach(function (item, index) {
-        var [name, type] = item.split(":");
-        var inputElement = document.getElementById(name);
-        if (
-          typeof values[index] === "undefined" ||
-          values[index] === "%values"
-        ) {
-        } else {
-          if (inputElement.type === "checkbox") {
-            inputElement.checked = values[index] === "true";
-          } else {
-            inputElement.value = values[index];
-          }
-        }
-      });
-    }
-    versionElement.innerHTML = "Input Form Version: 1.2.4";
-  </script>
-  <!-- #endregion JS -->
+      }
+      versionElement.innerHTML = "Input Form Version: 1.2.4";
+    </script>
+    <!-- #endregion JS -->
+  </body>
+  <!-- #endregion Body -->
 </html>
