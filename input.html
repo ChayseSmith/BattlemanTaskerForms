@@ -153,9 +153,7 @@
     ></form>
     <div id="bottom-container" class="bottom-container">
       <div class="bottom-div"><span id="testdiv"></span></div>
-      <div class="bottom-div">
-        <span id="version">Input Form Version: 1.2.3</span>
-      </div>
+      <div class="bottom-div"><span id="version"></span></div>
     </div>
   </body>
   <!-- #endregion Body -->
@@ -170,6 +168,7 @@
     var contentElement = document.querySelector("#content");
     var footerElement = document.querySelector("#footer");
     var testdivElement = document.querySelector("#testdiv");
+    var versionElement = document.querySelector("#version");
 
     if (AutoTools.isSet("titleFromTasker")) {
       titleElement.innerHTML = titleFromTasker;
@@ -291,6 +290,7 @@
         }
       });
     }
+    versionElement.innerHTML = "Input Form Version: 1.2.4";
   </script>
   <!-- #endregion JS -->
 </html>
