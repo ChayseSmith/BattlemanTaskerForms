@@ -65,6 +65,20 @@
         padding: 5px;
         min-height: 25px;
       }
+      .bottom-container {
+        position: fixed; /* Use 'absolute' if you want it to scroll away */
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+      }
+      .bottom-div {
+        width: 100px; /* or your desired width */
+        height: 50px; /* or your desired height */
+        background-color: lightblue; /* Just for visibility */
+      }
     </style>
     <!-- #endregion Style -->
     <!-- #region meta -->
@@ -106,7 +120,7 @@
     />
     <!-- #endregion meta -->
     <div id="title">Untitled 20</div>
-    <div id="description" style="min-height: 70px;"></div>
+    <div id="description" style="min-height: 70px"></div>
   </head>
   <!-- #endregion Head -->
   <!-- #region Body -->
@@ -124,8 +138,10 @@
         justify-content: space-evenly;
       "
     ></form>
-    <div id="testdiv" style="text-align: left"></div>
-    <div id="version" style="text-align: right">Input Form Version: 1.1.9</div>
+    <div id="bottom-container" class="bottom-container">
+      <div id="testdiv" class="bottom-div"></div>
+      <div id="version" class="bottom-div">Input Form Version: 1.2.0</div>
+    </div>
   </body>
   <!-- #endregion Body -->
   <!-- #region JS -->
