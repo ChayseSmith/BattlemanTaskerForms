@@ -10,8 +10,8 @@
         color: #ffffff;
         background-color: black;
         margin: 5px;
-        padding-bottom: 70px; /* Ensure space for the bottom container */
-        border: 5px solid #ffffff; /* Restore the white border */
+        border: 5px solid rgb(0, 70, 94); /* Ensure the border is around the entire content */
+        padding-bottom: 30px; /* Adjust if necessary */
       }
       #title {
         font-size: 200%;
@@ -69,23 +69,27 @@
         justify-content: space-between;
         padding: 10px;
         background-color: rgb(0, 70, 94);
-        z-index: 1000; /* Ensure it's above other content */
+        z-index: 1000;
       }
       .bottom-div {
         display: inline-block;
-        height: 30px; /* Adjusted to make it shorter */
+        height: 30px; /* Adjusted height */
         background-color: rgb(0, 70, 94);
         position: relative;
       }
       .bottom-div span {
-        padding: 0 20px; /* Increased padding for more horizontal space */
-        line-height: 30px; /* Match the new height of the .bottom-div */
+        line-height: 30px; /* Align with .bottom-div height */
       }
+      /* Specific adjustment for the left-side text to reduce left padding */
       .bottom-div:first-child span {
-        text-align: left;
+        padding-left: 5px; /* Reduced padding to bring text closer to the edge */
       }
+      /* Keep the right-side text padding as is for the version text */
       .bottom-div:last-child span {
-        text-align: right;
+        padding-right: 20px; /* Adjust as needed */
+      }
+      form#footer {
+        margin-bottom: 50px; /* Adjust the value to ensure it's within the bordered area */
       }
     </style>
     <!-- #endregion Style -->
@@ -284,7 +288,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.5";
+      versionElement.innerHTML = "Input Form Version: 1.2.6";
     </script>
     <!-- #endregion JS -->
   </body>
