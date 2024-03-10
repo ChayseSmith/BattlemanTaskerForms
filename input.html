@@ -329,8 +329,8 @@
         var validValueCount = 0;
         var invalidValueCount = 0;
 
-        appendDebugInfo("Values: " + values.join(",").replace(/\\(.)/g, "$1")); // Display values
-        appendDebugInfo("Items: " + items.join(",")); // Display items
+        // appendDebugInfo("Values: " + values.join(",").replace(/\\(.)/g, "$1")); // Display values
+        // appendDebugInfo("Items: " + items.join(",")); // Display items
 
         items.forEach(function (item, index) {
           var [name, type] = item.split(/(?<!\\):/);
