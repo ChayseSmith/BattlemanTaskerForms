@@ -214,10 +214,18 @@
       var versionElement = document.querySelector("#version");
       var debugInfoElement = document.querySelector("#debugInfo");
 
-      function appendDebugInfo(message) {
+      const originalConsoleLog = console.log;
+      console.log = function (...message) {
+        originalConsoleLog(...message);
+        appendDebugInfo(...message);
+      };
+
+      function appendDebugInfo(...messages) {
         if (AutoTools.isSet("enableDebug")) {
           if (enableDebug !== "%debug") {
-            debugInfoElement.innerHTML += message + "<br>"; // Append new messages and keep old ones
+            messages.forEach((message) => {
+              debugInfoElement.innerHTML += message + "<br>"; // Append new messages and keep old ones
+            });
           }
         }
       }
@@ -393,7 +401,7 @@
         }
       }
       appendDebugInfo("got to here: 5");
-      versionElement.innerHTML = "Input Form Version: 2.0.0";
+      versionElement.innerHTML = "Input Form Version: 2.0.1";
       highlightElement.innerHTML = "JSON";
     </script>
     <!-- #endregion JS -->
