@@ -371,18 +371,20 @@
               " with value " +
               values[index].replace(/\\(.)/g, "$1")
           );
-
+          console.log("Got to Here (recursive): 1a")
           if (!inputElement) {
             console.log("Element not found: " + name); // Display if element not found
             return;
           }
-
+          console.log("Got to Here (recursive): 1b")
           if (
-            typeof values[index].replace(/\\(.)/g, "$1") === "undefined" ||
+            typeof values[index] === "undefined" ||
             values[index].replace(/\\(.)/g, "$1") === "%values"
           ) {
+            console.log("Got to Here (recursive): 1b1 (undefined)")
             invalidValueCount++;
           } else {
+            console.log("Got to Here (recursive): 1b1 (valid)")
             validValueCount++;
             if (inputElement.type === "checkbox") {
               inputElement.checked =
