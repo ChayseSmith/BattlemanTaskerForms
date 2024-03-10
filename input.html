@@ -319,7 +319,8 @@
 
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
-        var values = valuesFromTasker.split(/(?<!\\),/);
+        var values = valuesFromTasker.replace(/\\(.)/g, "$1").split(/(?<!\\),/);
+        // var values = valuesFromTasker.split(/(?<!\\),/);
         var items = contentFromTasker.split(/(?<!\\),/);
         var validValueCount = 0;
         var invalidValueCount = 0;
@@ -361,8 +362,8 @@
           appendDebugInfo("Has " + validValueCount + " Valid Values");
         }
       }
-      versionElement.innerHTML = "Input Form Version: 1.3.3";
-      testdivElement.innerHTML = "New Line Description";
+      versionElement.innerHTML = "Input Form Version: 1.3.4";
+      testdivElement.innerHTML = "Great Escape";
     </script>
     <!-- #endregion JS -->
   </body>
