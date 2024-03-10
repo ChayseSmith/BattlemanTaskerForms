@@ -230,14 +230,12 @@
         }
       }
       console.log("Debugging Enabled");
-      console.log("got to here: 1");
       if (AutoTools.isSet("titleFromTasker")) {
         if (titleFromTasker !== "%title") {
           titleElement.innerHTML = titleFromTasker;
           document.title = titleFromTasker;
         }
       }
-      console.log("got to here: 2");
       if (AutoTools.isSet("descriptionFromTasker")) {
         if (descriptionFromTasker !== "%description") {
           descriptionElement.innerHTML = descriptionFromTasker.replace(
@@ -246,7 +244,6 @@
           );
         }
       }
-      console.log("got to here: 3");
       if (AutoTools.isSet("fieldsFromTasker")) {
         if(fieldsFromTasker !== "%fields"){
           // Content from tasker is an array separated by commas
@@ -349,18 +346,19 @@
           footerElement.appendChild(cancelButton);
         }
       }
-      console.log("got to here: 4");
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
         var values = valuesFromTasker.split(/(?<!\\),/);
         var items = fieldsFromTasker.split(/(?<!\\),/);
         var validValueCount = 0;
         var invalidValueCount = 0;
+        console.log("Got to Here: 1")
 
         // console.log("Values: " + values.join(",").replace(/\\(.)/g, "$1")); // Display values
         // console.log("Items: " + items.join(",")); // Display items
 
         items.forEach(function (item, index) {
+          console.log("Got to Here (recursive): 1")
           var [name, type] = item.split(/(?<!\\):/);
           var inputElement = document.getElementById(name);
 
@@ -393,16 +391,18 @@
               inputElement.value = values[index].replace(/\\(.)/g, "$1");
             }
           }
+          console.log("Got to Here (recursive): 2")
         });
+        console.log("Got to Here: 2")
         if (invalidValueCount > 0) {
           console.log("Has " + invalidValueCount + " Invalid Values");
         } else if (validValueCount > 0) {
           console.log("Has " + validValueCount + " Valid Values");
         }
+        console.log("Got to Here: 3")
       }
-      console.log("got to here: 5");
-      versionElement.innerHTML = "Input Form Version: 2.0.1";
-      highlightElement.innerHTML = "JSON";
+      versionElement.innerHTML = "Input Form Version: 2.0.2";
+      highlightElement.innerHTML = "troubleshooting errors";
     </script>
     <!-- #endregion JS -->
   </body>
