@@ -294,7 +294,8 @@
       if (AutoTools.isSet("valuesFromTasker")) {
         var values = valuesFromTasker.split(",");
         var items = contentFromTasker.split(",");
-        var valueCount = 0;
+        var validValueCount = 0;
+        var invalidValueCount = 0;
         items.forEach(function (item, index) {
           var [name, type] = item.split(":");
           var inputElement = document.getElementById(name);
@@ -302,9 +303,9 @@
             typeof values[index] === "undefined" ||
             values[index] === "%values"
           ) {
+            invalidValueCount++;
           } else {
-            valueCount++;
-            testdivElement.innerHTML = "Has " + valueCount + " Values";
+            validValueCount++;
             if (inputElement.type === "checkbox") {
               inputElement.checked = values[index] === "true";
             } else {
@@ -312,8 +313,13 @@
             }
           }
         });
+        if (invalidValueCount > 0) {
+          testdivElement.innerHTML = "Has " + invalidValueCount + " Invalid Values";
+        } else if (validValueCount > 0) {
+          testdivElement.innerHTML = "Has " + validValueCount + " Valid Values";
+        };
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.30";
+      versionElement.innerHTML = "Input Form Version: 1.2.31";
     </script>
     <!-- #endregion JS -->
   </body>
