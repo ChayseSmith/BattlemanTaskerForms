@@ -158,6 +158,15 @@
       description="Values to prefill the form with. Comma separated."
       hint="value1,true,3"
     />
+    <meta
+      name="autotoolswebscreen"
+      type="variablejs"
+      group="UI Info"
+      id="enableDebug"
+      label="Form Values"
+      description="Should enable debugInfo"
+      hint="true,false"
+    />
     <!-- #endregion meta -->
   </head>
   <!-- #endregion Head -->
@@ -167,6 +176,7 @@
       <!-- All your content except .bottom-container goes here -->
       <div id="title">Untitled 20</div>
       <div id="description"></div>
+      <div id="debugInfo"></div>
       <div id="header"></div>
       <form id="content"></form>
       <form id="footer"></form>
@@ -190,6 +200,14 @@
       var footerElement = document.querySelector("#footer");
       var testdivElement = document.querySelector("#testdiv");
       var versionElement = document.querySelector("#version");
+      var debugInfoElement = document.querySelector("#debugInfo");
+
+      function appendDebugInfo(message) {
+        if (AutoTools.isSet("enableDebug")) {
+          debugInfoElement.innerHTML += message + "<br>"; // Append new messages and keep old ones
+        }
+      }
+      appendDebugInfo("Debugging Enabled");
 
       if (AutoTools.isSet("titleFromTasker")) {
         titleElement.innerHTML = titleFromTasker;
@@ -296,9 +314,24 @@
         var items = contentFromTasker.split(",");
         var validValueCount = 0;
         var invalidValueCount = 0;
+
+        appendDebugInfo("Values: " + values.join(", ")); // Display values
+        appendDebugInfo("Items: " + items.join(", ")); // Display items
+
         items.forEach(function (item, index) {
           var [name, type] = item.split(":");
           var inputElement = document.getElementById(name);
+
+          // Display the current item and value being processed
+          appendDebugInfo(
+            "Processing: " + name + ", " + type + " with value " + values[index]
+          );
+
+          if (!inputElement) {
+            appendDebugInfo("Element not found: " + name); // Display if element not found
+            return;
+          }
+
           if (
             typeof values[index] === "undefined" ||
             values[index] === "%values"
@@ -314,12 +347,12 @@
           }
         });
         if (invalidValueCount > 0) {
-          testdivElement.innerHTML = "Has " + invalidValueCount + " Invalid Values";
+          appendDebugInfo("Has " + invalidValueCount + " Invalid Values");
         } else if (validValueCount > 0) {
-          testdivElement.innerHTML = "Has " + validValueCount + " Valid Values";
-        };
+          appendDebugInfo("Has " + validValueCount + " Valid Values");
+        }
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.31";
+      versionElement.innerHTML = "Input Form Version: 1.2.32";
     </script>
     <!-- #endregion JS -->
   </body>
