@@ -229,15 +229,15 @@
           }
         }
       }
-      appendDebugInfo("Debugging Enabled");
-      appendDebugInfo("got to here: 1");
+      console.log("Debugging Enabled");
+      console.log("got to here: 1");
       if (AutoTools.isSet("titleFromTasker")) {
         if (titleFromTasker !== "%title") {
           titleElement.innerHTML = titleFromTasker;
           document.title = titleFromTasker;
         }
       }
-      appendDebugInfo("got to here: 2");
+      console.log("got to here: 2");
       if (AutoTools.isSet("descriptionFromTasker")) {
         if (descriptionFromTasker !== "%description") {
           descriptionElement.innerHTML = descriptionFromTasker.replace(
@@ -246,7 +246,7 @@
           );
         }
       }
-      appendDebugInfo("got to here: 3");
+      console.log("got to here: 3");
       if (AutoTools.isSet("fieldsFromTasker")) {
         if(fieldsFromTasker !== "%fields"){
           // Content from tasker is an array separated by commas
@@ -294,7 +294,7 @@
                 // Handle unknown type
                 inputElement.type = "text";
                 inputElement.placeholder = "Unknown type: " + type;
-                appendDebugInfo("Unknown type: " + type);
+                console.log("Unknown type: " + type);
                 break;
             }
             inputElement.id = name;
@@ -349,7 +349,7 @@
           footerElement.appendChild(cancelButton);
         }
       }
-      appendDebugInfo("got to here: 4");
+      console.log("got to here: 4");
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
         var values = valuesFromTasker.split(/(?<!\\),/);
@@ -357,15 +357,15 @@
         var validValueCount = 0;
         var invalidValueCount = 0;
 
-        // appendDebugInfo("Values: " + values.join(",").replace(/\\(.)/g, "$1")); // Display values
-        // appendDebugInfo("Items: " + items.join(",")); // Display items
+        // console.log("Values: " + values.join(",").replace(/\\(.)/g, "$1")); // Display values
+        // console.log("Items: " + items.join(",")); // Display items
 
         items.forEach(function (item, index) {
           var [name, type] = item.split(/(?<!\\):/);
           var inputElement = document.getElementById(name);
 
           // Display the current item and value being processed
-          appendDebugInfo(
+          console.log(
             "Processing: " +
               name +
               ":" +
@@ -375,7 +375,7 @@
           );
 
           if (!inputElement) {
-            appendDebugInfo("Element not found: " + name); // Display if element not found
+            console.log("Element not found: " + name); // Display if element not found
             return;
           }
 
@@ -395,12 +395,12 @@
           }
         });
         if (invalidValueCount > 0) {
-          appendDebugInfo("Has " + invalidValueCount + " Invalid Values");
+          console.log("Has " + invalidValueCount + " Invalid Values");
         } else if (validValueCount > 0) {
-          appendDebugInfo("Has " + validValueCount + " Valid Values");
+          console.log("Has " + validValueCount + " Valid Values");
         }
       }
-      appendDebugInfo("got to here: 5");
+      console.log("got to here: 5");
       versionElement.innerHTML = "Input Form Version: 2.0.1";
       highlightElement.innerHTML = "JSON";
     </script>
