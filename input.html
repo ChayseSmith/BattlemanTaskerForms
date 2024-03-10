@@ -213,19 +213,19 @@
         }
       }
       appendDebugInfo("Debugging Enabled");
-
+      console.log("got to here: 1")
       if (AutoTools.isSet("titleFromTasker")) {
         titleElement.innerHTML = titleFromTasker;
         document.title = titleFromTasker;
       }
-
+      console.log("got to here: 2")
       if (AutoTools.isSet("descriptionFromTasker")) {
         descriptionElement.innerHTML = descriptionFromTasker.replace(
           /\n/g,
           "<br>"
         );
       }
-
+      console.log("got to here: 3")
       if (AutoTools.isSet("contentFromTasker")) {
         // Content from tasker is an array separated by commas
         var items = contentFromTasker.split(/(?<!\\),/);
@@ -321,7 +321,7 @@
         };
         footerElement.appendChild(cancelButton);
       }
-
+      console.log("got to here: 4")
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
         var values = valuesFromTasker.split(/(?<!\\),/);
@@ -372,8 +372,9 @@
           appendDebugInfo("Has " + validValueCount + " Valid Values");
         }
       }
+      console.log("got to here: 5")
       versionElement.innerHTML = "Input Form Version: 1.3.6";
-      testdivElement.innerHTML = "REAL numbers";
+      testdivElement.innerHTML = "troubleshooting silent error";
     </script>
     <!-- #endregion JS -->
   </body>
