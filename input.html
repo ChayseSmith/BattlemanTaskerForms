@@ -292,9 +292,9 @@
 
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
-        testdivElement.innerHTML = "Has Values";
         var values = valuesFromTasker.split(",");
         var items = contentFromTasker.split(",");
+        var valueCount = 0;
         items.forEach(function (item, index) {
           var [name, type] = item.split(":");
           var inputElement = document.getElementById(name);
@@ -303,6 +303,8 @@
             values[index] === "%values"
           ) {
           } else {
+            valueCount++;
+            testdivElement.innerHTML = "Has " + valueCount + " Values";
             if (inputElement.type === "checkbox") {
               inputElement.checked = values[index] === "true";
             } else {
@@ -311,7 +313,7 @@
           }
         });
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.29";
+      versionElement.innerHTML = "Input Form Version: 1.2.30";
     </script>
     <!-- #endregion JS -->
   </body>
