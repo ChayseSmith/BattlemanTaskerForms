@@ -263,12 +263,17 @@
               // Create a <div> element for INT type
               inputElement.type = "number";
               break;
+            case "REAL":
+              // Create a <div> element for REAL type
+              inputElement.type = "number";
+              inputElement.placeholder = "0.00";
+              inputElement.step = "0.01";
+              break;
             default:
               // Handle unknown type
               inputElement.type = "text";
-              inputElement.placeholder =
-                type +
-                " is not a valid type. Please use TEXT, TEXTAREA, BOOL, or INT.";
+              inputElement.placeholder = "Unknown type: " + type;
+              appendDebugInfo("Unknown type: " + type);
               break;
           }
           inputElement.id = name;
@@ -333,7 +338,12 @@
 
           // Display the current item and value being processed
           appendDebugInfo(
-            "Processing: " + name + ":" + type + " with value " + values[index].replace(/\\(.)/g, "$1")
+            "Processing: " +
+              name +
+              ":" +
+              type +
+              " with value " +
+              values[index].replace(/\\(.)/g, "$1")
           );
 
           if (!inputElement) {
@@ -349,7 +359,8 @@
           } else {
             validValueCount++;
             if (inputElement.type === "checkbox") {
-              inputElement.checked = values[index].replace(/\\(.)/g, "$1") === "true";
+              inputElement.checked =
+                values[index].replace(/\\(.)/g, "$1") === "true";
             } else {
               inputElement.value = values[index].replace(/\\(.)/g, "$1");
             }
@@ -361,8 +372,8 @@
           appendDebugInfo("Has " + validValueCount + " Valid Values");
         }
       }
-      versionElement.innerHTML = "Input Form Version: 1.3.5";
-      testdivElement.innerHTML = "Escape the Escape";
+      versionElement.innerHTML = "Input Form Version: 1.3.6";
+      testdivElement.innerHTML = "REAL numbers";
     </script>
     <!-- #endregion JS -->
   </body>
