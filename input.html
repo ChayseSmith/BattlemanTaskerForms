@@ -107,6 +107,9 @@
       .bottom-div:last-child span {
         padding-right: 20px;
       }
+      .debug-message {
+        color: yellow;
+      }
       form#footer {
         flex-direction: row;
         position: fixed; /* Make footer always visible */
@@ -176,7 +179,7 @@
       <!-- All your content except .bottom-container goes here -->
       <div id="title">Untitled 20</div>
       <div id="description"></div>
-      <div id="debugInfo"></div>
+      <div id="debugInfo" class="debug-message"></div>
       <div id="header"></div>
       <form id="content"></form>
       <form id="footer"></form>
@@ -352,7 +355,7 @@
           appendDebugInfo("Has " + validValueCount + " Valid Values");
         }
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.32";
+      versionElement.innerHTML = "Input Form Version: 1.2.33";
     </script>
     <!-- #endregion JS -->
   </body>
