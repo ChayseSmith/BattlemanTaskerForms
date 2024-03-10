@@ -207,7 +207,9 @@
 
       function appendDebugInfo(message) {
         if (AutoTools.isSet("enableDebug")) {
-          debugInfoElement.innerHTML += message + "<br>"; // Append new messages and keep old ones
+          if (enableDebug !== "%debug") {
+            debugInfoElement.innerHTML += message + "<br>"; // Append new messages and keep old ones
+          }
         }
       }
       appendDebugInfo("Debugging Enabled");
@@ -327,7 +329,7 @@
 
           // Display the current item and value being processed
           appendDebugInfo(
-            "Processing: " + name + ", " + type + " with value " + values[index]
+            "Processing: " + name + ":" + type + " with value " + values[index]
           );
 
           if (!inputElement) {
@@ -355,7 +357,7 @@
           appendDebugInfo("Has " + validValueCount + " Valid Values");
         }
       }
-      versionElement.innerHTML = "Input Form Version: 1.2.33";
+      versionElement.innerHTML = "Input Form Version: 1.2.34";
     </script>
     <!-- #endregion JS -->
   </body>
