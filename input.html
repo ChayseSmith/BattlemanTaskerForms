@@ -225,10 +225,10 @@
 
       if (AutoTools.isSet("contentFromTasker")) {
         // Content from tasker is an array separated by commas
-        var items = contentFromTasker.split(",");
+        var items = contentFromTasker.split(/(?<!\\),/);
         items.forEach(function (item) {
           // Separate the string into name and type
-          var [name, type] = item.split(":");
+          var [name, type] = item.split(/(?<!\\):/);
           // contentElement.appendChild(br.cloneNode(true));
           // Create a <p> element for each item
           var pElement = document.createElement("p");
@@ -282,7 +282,7 @@
         submitButton.onclick = function () {
           var data = [];
           items.forEach(function (item) {
-            var [name, type] = item.split(":");
+            var [name, type] = item.split(/(?<!\\):/);
             var inputElement = document.getElementById(name);
             if (inputElement.type === "checkbox") {
               data.push(inputElement.checked);
@@ -316,16 +316,16 @@
 
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
-        var values = valuesFromTasker.split(",");
-        var items = contentFromTasker.split(",");
+        var values = valuesFromTasker.split(/(?<!\\),/);
+        var items = contentFromTasker.split(/(?<!\\),/);
         var validValueCount = 0;
         var invalidValueCount = 0;
 
-        appendDebugInfo("Values: " + values.join(", ")); // Display values
-        appendDebugInfo("Items: " + items.join(", ")); // Display items
+        appendDebugInfo("Values: " + values.join(",")); // Display values
+        appendDebugInfo("Items: " + items.join(",")); // Display items
 
         items.forEach(function (item, index) {
-          var [name, type] = item.split(":");
+          var [name, type] = item.split(/(?<!\\):/);
           var inputElement = document.getElementById(name);
 
           // Display the current item and value being processed
@@ -358,7 +358,7 @@
           appendDebugInfo("Has " + validValueCount + " Valid Values");
         }
       }
-      versionElement.innerHTML = "Input Form Version: 1.3.1";
+      versionElement.innerHTML = "Input Form Version: 1.3.2";
     </script>
     <!-- #endregion JS -->
   </body>
