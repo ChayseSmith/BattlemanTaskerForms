@@ -222,14 +222,14 @@
         }
       }
       appendDebugInfo("Debugging Enabled");
-      console.log("got to here: 1");
+      appendDebugInfo("got to here: 1");
       if (AutoTools.isSet("titleFromTasker")) {
         if (titleFromTasker !== "%title") {
           titleElement.innerHTML = titleFromTasker;
           document.title = titleFromTasker;
         }
       }
-      console.log("got to here: 2");
+      appendDebugInfo("got to here: 2");
       if (AutoTools.isSet("descriptionFromTasker")) {
         if (descriptionFromTasker !== "%description") {
           descriptionElement.innerHTML = descriptionFromTasker.replace(
@@ -238,7 +238,7 @@
           );
         }
       }
-      console.log("got to here: 3");
+      appendDebugInfo("got to here: 3");
       if (AutoTools.isSet("fieldsFromTasker")) {
         if(fieldsFromTasker !== "%fields"){
           // Content from tasker is an array separated by commas
@@ -341,7 +341,7 @@
           footerElement.appendChild(cancelButton);
         }
       }
-      console.log("got to here: 4");
+      appendDebugInfo("got to here: 4");
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
         var values = valuesFromTasker.split(/(?<!\\),/);
@@ -392,7 +392,7 @@
           appendDebugInfo("Has " + validValueCount + " Valid Values");
         }
       }
-      console.log("got to here: 5");
+      appendDebugInfo("got to here: 5");
       versionElement.innerHTML = "Input Form Version: 2.0.0";
       highlightElement.innerHTML = "JSON";
     </script>
