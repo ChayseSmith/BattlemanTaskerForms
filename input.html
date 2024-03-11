@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <!-- #region Head -->
   <head>
-    <!-- #region Style -->
     <style>
       body {
         min-height: 475px;
@@ -118,12 +116,11 @@
         right: 0;
         display: flex;
         justify-content: space-evenly; /* Evenly space the buttons */
-        padding: 0 10px; /* Padding on sides */
+        padding: 0 10px 50px 10px; /* Padding: top right bottom left */
         z-index: 1000; /* Ensure it's above the pseudo-element */
         background-color: rgba(0, 71, 94, 0.359);
       }
     </style>
-    <!-- #endregion Style -->
     <!-- #region meta -->
     <meta name="color-scheme" content="only light">
     <meta
@@ -182,8 +179,6 @@
     />
     <!-- #endregion meta -->
   </head>
-  <!-- #endregion Head -->
-  <!-- #region Body -->
   <body>
     <div class="content-wrapper">
       <!-- All your content except .bottom-container goes here -->
@@ -201,7 +196,6 @@
       </div>
     </div>
 
-    <!-- #region JS -->
     <script type="text/javascript">
       AutoTools.sendCommand("InputOpened");
       var br = document.createElement("span");
@@ -407,10 +401,8 @@
         }
         console.log("Got to Here: 3")
       }
-      versionElement.innerHTML = "Input Form Version: 2.0.4";
-      highlightElement.innerHTML = "Sometimes Darkness...";
+      versionElement.innerHTML = "Input Form Version: 2.0.5";
+      highlightElement.innerHTML = "Padding";
     </script>
-    <!-- #endregion JS -->
   </body>
-  <!-- #endregion Body -->
 </html>
