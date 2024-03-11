@@ -24,7 +24,7 @@
         border-left: 5px solid rgb(0, 70, 94);
         border-right: 5px solid rgb(0, 70, 94);
         pointer-events: none;
-        z-index: 999;
+        z-index: 1000;
       }
       .content-wrapper {
         padding: 10px; /* Adjust this value as needed */
@@ -86,7 +86,7 @@
         justify-content: space-between;
         padding: 5px;
         background-color: rgb(0, 70, 94);
-        z-index: 1000;
+        z-index: 1002;
       }
       .bottom-div {
         display: inline-block;
@@ -111,13 +111,13 @@
       form#footer {
         flex-direction: row;
         position: fixed; /* Make footer always visible */
-        bottom: 50px; /* Adjust distance from bottom */
-        left: 0;
-        right: 0;
+        bottom: 0px; /* Adjust distance from bottom */
+        left: 5px;
+        right: 5px;
         display: flex;
         justify-content: space-evenly; /* Evenly space the buttons */
         padding: 0 10px 50px 10px; /* Padding: top right bottom left */
-        z-index: 1000; /* Ensure it's above the pseudo-element */
+        z-index: 1001; /* Ensure it's above the pseudo-element */
         background-color: rgba(0, 71, 94, 0.359);
       }
     </style>
@@ -401,8 +401,8 @@
         }
         console.log("Got to Here: 3")
       }
-      versionElement.innerHTML = "Input Form Version: 2.0.5";
-      highlightElement.innerHTML = "Padding";
+      versionElement.innerHTML = "Input Form Version: 2.0.6";
+      highlightElement.innerHTML = "Try again";
     </script>
   </body>
 </html>
