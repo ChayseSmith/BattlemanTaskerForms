@@ -229,6 +229,11 @@
           }
         }
       }
+
+      function isError(input) {
+        return input instanceof Error
+      }
+
       console.log("Debugging Enabled");
       if (AutoTools.isSet("titleFromTasker")) {
         if (titleFromTasker !== "%title") {
@@ -348,6 +353,7 @@
       }
       // Prefill the form with values from tasker
       if (AutoTools.isSet("valuesFromTasker")) {
+        var placeholders = placeholdersFromTasker.split(/(?<!\\),/);
         var values = valuesFromTasker.split(/(?<!\\),/);
         var items = fieldsFromTasker.split(/(?<!\\),/);
         var validValueCount = 0;
@@ -357,20 +363,18 @@
         // console.log("Values: " + values.join(",").replace(/\\(.)/g, "$1")); // Display values
         // console.log("Items: " + items.join(",")); // Display items
 
-        items.forEach(function (item, index) {
+        items.forEach((item, index) => {
           console.log("Got to Here (recursive): 1")
           var [name, type] = item.split(/(?<!\\):/);
           var inputElement = document.getElementById(name);
-
+          
           // Display the current item and value being processed
-          console.log(
-            "Processing: " +
-              name +
-              ":" +
-              type +
-              " with value " +
-              values[index].replace(/\\(.)/g, "$1")
-          );
+          try {
+            console.log("Processing: " + name + ":" + type + " with value " + (values[index].replace(/\\(.)/g, "$1") instanceof Error ? values[index] : values[index].replace(/\\(.)/g, "$1")));
+          } catch (error) {
+            console.log("Error: " + error);
+          }
+          //HACK: Reprocessed
           console.log("Got to Here (recursive): 1a")
           if (!inputElement) {
             console.log("Element not found: " + name); // Display if element not found
@@ -403,8 +407,8 @@
         }
         console.log("Got to Here: 3")
       }
-      versionElement.innerHTML = "Input Form Version: 2.0.2";
-      highlightElement.innerHTML = "troubleshooting errors";
+      versionElement.innerHTML = "Input Form Version: 2.0.3";
+      highlightElement.innerHTML = "Error Catching";
     </script>
     <!-- #endregion JS -->
   </body>
