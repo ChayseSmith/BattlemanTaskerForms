@@ -234,6 +234,8 @@
         if (titleFromTasker !== "%title") {
           titleElement.innerHTML = titleFromTasker;
           document.title = titleFromTasker;
+        }else{
+          console.log("Title not set")
         }
       }
       if (AutoTools.isSet("descriptionFromTasker")) {
@@ -242,6 +244,8 @@
             /\n/g,
             "<br>"
           );
+        }else{
+          console.log("Description not set")
         }
       }
       if (AutoTools.isSet("fieldsFromTasker")) {
@@ -344,6 +348,8 @@
             AutoTools.sendCommand("InputCancelled");
           };
           footerElement.appendChild(cancelButton);
+        }else{
+          console.log("Fields not set")
         }
       }
       // Prefill the form with values from tasker
@@ -400,9 +406,11 @@
           console.log("Has " + validValueCount + " Valid Values");
         }
         console.log("Got to Here: 3")
+      }else{
+        console.log("Values not set")
       }
-      versionElement.innerHTML = "Input Form Version: 2.0.8";
-      highlightElement.innerHTML = "Beautiful";
+      versionElement.innerHTML = "Input Form Version: 2.0.9";
+      highlightElement.innerHTML = "More Logging; Great!";
     </script>
   </body>
 </html>
