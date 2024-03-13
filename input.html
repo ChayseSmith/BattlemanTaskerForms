@@ -122,7 +122,7 @@
       }
     </style>
     <!-- #region meta -->
-    <meta name="color-scheme" content="only light">
+    <meta name="color-scheme" content="only light" />
     <meta
       name="autotoolswebscreen"
       type="variablejs"
@@ -224,9 +224,27 @@
           }
         }
       }
+      function tryBase64Decode(str) {
+        try {
+          // Attempt to decode the string
+          const decoded = atob(str);
+
+          // Optionally, you could add additional checks here to verify that
+          // the decoded string is meaningful. For example, you could check if
+          // the decoded string contains only printable characters, indicating
+          // it's likely a successfully decoded string.
+
+          // Return the decoded string if decoding was successful
+          return decoded;
+        } catch (e) {
+          // If an error occurs, return the original string,
+          // assuming it didn't need decoding or wasn't Base64-encoded
+          return str;
+        }
+      }
 
       function isError(input) {
-        return input instanceof Error
+        return input instanceof Error;
       }
 
       console.log("Debugging Enabled");
@@ -234,8 +252,8 @@
         if (titleFromTasker !== "%title") {
           titleElement.innerHTML = titleFromTasker;
           document.title = titleFromTasker;
-        }else{
-          console.log("Title not set")
+        } else {
+          console.log("Title not set");
         }
       }
       if (AutoTools.isSet("descriptionFromTasker")) {
@@ -244,12 +262,12 @@
             /\n/g,
             "<br>"
           );
-        }else{
-          console.log("Description not set")
+        } else {
+          console.log("Description not set");
         }
       }
       if (AutoTools.isSet("fieldsFromTasker")) {
-        if(fieldsFromTasker !== "%fields"){
+        if (fieldsFromTasker !== "%fields") {
           // Content from tasker is an array separated by commas
           var items = fieldsFromTasker.split(/(?<!\\),/);
           items.forEach(function (item) {
@@ -348,8 +366,8 @@
             AutoTools.sendCommand("InputCancelled");
           };
           footerElement.appendChild(cancelButton);
-        }else{
-          console.log("Fields not set")
+        } else {
+          console.log("Fields not set");
         }
       }
       // Prefill the form with values from tasker
@@ -359,58 +377,67 @@
         var items = fieldsFromTasker.split(/(?<!\\),/);
         var validValueCount = 0;
         var invalidValueCount = 0;
-        console.log("Got to Here: 1")
+        console.log("Got to Here: 1");
 
         // console.log("Values: " + values.join(",").replace(/\\(.)/g, "$1")); // Display values
         // console.log("Items: " + items.join(",")); // Display items
 
         items.forEach((item, index) => {
-          console.log("Got to Here (recursive): 1")
+          console.log("Got to Here (recursive): 1");
           var [name, type] = item.split(/(?<!\\):/);
           var inputElement = document.getElementById(name);
           // Display the current item and value being processed
           try {
-            console.log("Processing: " + name + ":" + type + " with value " + (values[index].replace(/\\(.)/g, "$1") instanceof Error ? values[index] : values[index].replace(/\\(.)/g, "$1")));
+            console.log(
+              "Processing: " +
+                name +
+                ":" +
+                type +
+                " with value " +
+                (tryBase64Decode(values[index]).replace(/\\(.)/g, "$1") instanceof Error
+                  ? tryBase64Decode(values[index])
+                  : tryBase64Decode(values[index]).replace(/\\(.)/g, "$1"))
+            );
           } catch (error) {
             console.log("Error: " + error);
           }
           //HACK: Reprocessed
-          console.log("Got to Here (recursive): 1a")
+          console.log("Got to Here (recursive): 1a");
           if (!inputElement) {
             console.log("Element not found: " + name); // Display if element not found
             return;
           }
-          console.log("Got to Here (recursive): 1b")
+          console.log("Got to Here (recursive): 1b");
           if (
             typeof values[index] === "undefined" ||
-            values[index].replace(/\\(.)/g, "$1") === "%values"
+            tryBase64Decode(values[index]).replace(/\\(.)/g, "$1") === "%values"
           ) {
-            console.log("Got to Here (recursive): 1b1 (undefined)")
+            console.log("Got to Here (recursive): 1b1 (undefined)");
             invalidValueCount++;
           } else {
-            console.log("Got to Here (recursive): 1b1 (valid)")
+            console.log("Got to Here (recursive): 1b1 (valid)");
             validValueCount++;
             if (inputElement.type === "checkbox") {
               inputElement.checked =
-                values[index].replace(/\\(.)/g, "$1") === "true";
+              tryBase64Decode(values[index]).replace(/\\(.)/g, "$1") === "true";
             } else {
-              inputElement.value = values[index].replace(/\\(.)/g, "$1");
+              inputElement.value = tryBase64Decode(values[index]).replace(/\\(.)/g, "$1");
             }
           }
-          console.log("Got to Here (recursive): 2")
+          console.log("Got to Here (recursive): 2");
         });
-        console.log("Got to Here: 2")
+        console.log("Got to Here: 2");
         if (invalidValueCount > 0) {
           console.log("Has " + invalidValueCount + " Invalid Values");
         } else if (validValueCount > 0) {
           console.log("Has " + validValueCount + " Valid Values");
         }
-        console.log("Got to Here: 3")
-      }else{
-        console.log("Values not set")
+        console.log("Got to Here: 3");
+      } else {
+        console.log("Values not set");
       }
-      versionElement.innerHTML = "Input Form Version: 2.0.9";
-      highlightElement.innerHTML = "More Logging; Great!";
+      versionElement.innerHTML = "Input Form Version: 2.0.10";
+      highlightElement.innerHTML = "Oh the joys of Encoding";
     </script>
   </body>
 </html>
