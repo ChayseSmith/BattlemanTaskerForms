@@ -328,28 +328,28 @@
           submitButton.value = "Submit";
           submitButton.style = "max-width: 100px;";
           submitButton.onclick = function () {
-            var data = [];
+            // var data = [];
             var outputs = {};
             items.forEach(function (item) {
               var [name, type] = item.split(/(?<!\\):/);
               var inputElement = document.getElementById(name);
               if (inputElement.type === "checkbox") {
-                data.push(inputElement.checked);
+                // data.push(inputElement.checked);
                 outputs[name] = inputElement.checked;
               }
               if (inputElement.type === "number") {
-                data.push(inputElement.value);
+                // data.push(inputElement.value);
                 outputs[name] = inputElement.value;
               }
               if (
                 inputElement.type === "text" ||
                 inputElement.type === "textarea"
               ) {
-                data.push(inputElement.value.replace(/;/g, "\\;"));
-                outputs[name] = inputElement.value.replace(/;/g, "\\;");
+                // data.push(inputElement.value.replace(/;/g, "\\;"));
+                outputs[name] = btoa(inputElement.value);
               }
             });
-            data = data.join(";");
+            // data = data.join(";");
             outputs = JSON.stringify(outputs);
             // AutoTools.sendCommand("InputValues=:=" + data);
             AutoTools.sendCommand("InputJSON=:=" + outputs);
@@ -436,8 +436,8 @@
       } else {
         console.log("Values not set");
       }
-      versionElement.innerHTML = "Input Form Version: 2.0.10";
-      highlightElement.innerHTML = "Oh the joys of Encoding";
+      versionElement.innerHTML = "Input Form Version: 2.0.11";
+      highlightElement.innerHTML = "Oh the joys of Encoding again";
     </script>
   </body>
 </html>
